@@ -37,17 +37,15 @@
 
     <div class="container">
         <div class="row">
-            <div class="col" *ngFor="let item of lista_articoli | async">
+            <div class="col" *ngFor="let item of lista_articoli | async; let i = index" [attr.data-index]="i">
                 <div class="card mb-3">
-                    <div class="card-header bg-dark text-light">ARTICOLO</div>
+                    <div class="card-header bg-dark text-light">
+                        ARTICOLO {{i}}
+                        <i class="bi bi-info"></i>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">{{item.modello}} - {{item.marca}}</h5>
                         <p class="card-text">{{item.descrizione}}</p>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn-dark">
-                            <i class="bi bi-info"></i>
-                        </button>
                     </div>
                 </div>
             </div>

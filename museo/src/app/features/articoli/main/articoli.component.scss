@@ -3,3 +3,16 @@
     margin: auto;
     margin-top: 5%;
 }
+
+i {
+    color: white;
+    vertical-align: -.125em;
+    font-size: 2vw;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+card-header {
+    font-size: 2vw;
+}
