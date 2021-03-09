@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -19,7 +19,22 @@ export class ArticoliComponent implements OnInit {
     this.articoliService.retreiveAllArticoli()
   }
 
+  formCreazioneArticolo:FormGroup
+
   ngOnInit(): void {
+    this.formCreazioneArticolo = this.fb.group({
+      modello: ['', Validators.required],
+      marca: ['', Validators.required],
+      descrizione: ['', Validators.required],
+      nazionalita: ['', Validators.required],
+      ram: ['', Validators.required],
+      processore: ['', Validators.required],
+      schedaVideo: ['', Validators.required],
+      schedaMadre: ['', Validators.required],
+      annoProduzioneInizio: ['', Validators.required],
+      annoProduzioneFine: ['', Validators.required],
+      foto: ['', Validators.required],
+    })
   }
 
   //tramite redux prendo lista articoli presenti su db. su html accedo tramite for di lista_articoli
