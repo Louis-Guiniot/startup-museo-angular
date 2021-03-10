@@ -16,6 +16,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { SharedModule } from './shared/shared.module';
 import { HttpCommunicationsService } from 'src/core/http/http-communications.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UtenteEffects } from './redux/redux-utente/redux-user.effects';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SharedModule,
     StoreModule.forRoot(reducers),
      EffectsModule.forRoot([
-      ArticoloEffects
+      ArticoloEffects,
+      UtenteEffects,
      ]),
      NgbModule
   ],
