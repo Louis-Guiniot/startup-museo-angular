@@ -1,6 +1,6 @@
 <div class="box">
     <p>articoli works!</p>
-    <!-- <table class="table table-hover">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>id</th>
@@ -10,11 +10,10 @@
                 <th>nazionalita</th>
                 <th>ram</th>
                 <th>processore</th>
-                <th>schedaMadre</th>
-                <th>schedaVideo</th>
-                <th>annoProduzioneInizio</th>
-                <th>annoProduzioneFine</th>
-                <th>foto</th>
+                <th>scheda Madre</th>
+                <th>scheda Video</th>
+                <th>anno Produzione Inizio</th>
+                <th>anno Produzione Fine</th>
             </tr>
         </thead>
         <tbody>
@@ -31,92 +30,206 @@
                 <td>{{item.annoProduzioneInizio}}</td>
                 <td>{{item.annoProduzioneFine}}</td>
                 <td>{{item.foto}}</td>
+                <td><button (click)="open(aggiornamentoArticolo,item.id)">detail</button></td>
+                <td><button (click)="open(eliminazioneArticolo,item.id)">delete</button></td>
+
             </tr>
         </tbody>
-    </table> -->
+    </table>
 
-    <div>
-        <div class="row">
-            <div class="col">
-                <div class="input-group mb-3">
-                    <input type="text" autocomplete="off" placeholder="inserisci" class="form-control">
-                </div>
-
-            </div>
-            <div class="col">
-                <div class="input-group mb-3">
-                    <input type="text" autocomplete="off" placeholder="inserisci" class="form-control">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="input-group mb-3">
-                    <input type="text" autocomplete="off" placeholder="inserisci" class="form-control">
-                </div>
-            </div>
-            <div class="col">
-                <div class="input-group mb-3">
-                    <input type="text" autocomplete="off" placeholder="inserisci" class="form-control">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="input-group mb-3">
-                    <input type="text" autocomplete="off" placeholder="inserisci" class="form-control">
-                </div>
-            </div>
-            <div class="col">
-                <div class="input-group mb-3">
-                    <input type="text" autocomplete="off" placeholder="inserisci" class="form-control">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="input-group mb-3">
-                    <input type="text" autocomplete="off" placeholder="inserisci" class="form-control">
-                </div>
-            </div>
-            <div class="col">
-                <div class="input-group mb-3">
-                    <input type="text" autocomplete="off" placeholder="inserisci" class="form-control">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="input-group mb-3">
-                    <input type="text" autocomplete="off" placeholder="inserisci" class="form-control">
-                </div>
-            </div>
-            <div class="col">
-                <div class="input-group mb-3">
-                    <input type="text" autocomplete="off" placeholder="inserisci" class="form-control">
-                </div>
-            </div>
-        </div>
-        <div class="input-group mb-3">
-            <input type="text" autocomplete="off" placeholder="inserisci" class="form-control">
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col" *ngFor="let item of lista_articoli | async; let i = index" [attr.data-index]="i">
-                <div class="card mb-3">
-                    <div class="card-header bg-dark text-light">
-                        ARTICOLO {{i}}
-                        <i class="bi bi-info"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{item.modello}} - {{item.marca}}</h5>
-                        <p class="card-text">{{item.descrizione}}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <button class="btn btn-dark" (click)="open(inserimentoArticolo)">
+        clicca per inserire
+    </button>
 </div>
+
+<!-- ANCHOR aggiornamentoArticolo -->
+<ng-template #aggiornamentoArticolo let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">AGGIORNAMENTO ARTICOLO</h4>
+        <button type="button" class="close" id="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="formCreazioneArticolo" (ngSubmit)="aggiornaArticolo()">
+        <div *ngFor="let item of lista_articoli | async">
+            <div *ngIf="item.id == idItemArrivoNumber">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <input type="text" autocomplete="off" placeholder="{{item.modello}}" class="form-control" formControlName="modello">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <input type="text" autocomplete="off" placeholder="{{item.marca}}" class="form-control" formControlName="marca">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <input type="text" autocomplete="off" placeholder="{{item.descrizione}}" class="form-control" formControlName="descrizione">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <input type="text" autocomplete="off" placeholder="{{item.nazionalita}}" class="form-control" formControlName="nazionalita">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <input type="text" autocomplete="off" placeholder="{{item.ram}}" class="form-control" formControlName="ram">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <input type="text" autocomplete="off" placeholder="{{item.processore}}" class="form-control" formControlName="processore">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <input type="text" autocomplete="off" placeholder="{{item.schedaMadre}}" class="form-control" formControlName="schedaMadre">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <input type="text" autocomplete="off" placeholder="{{item.schedaVideo}}" class="form-control" formControlName="schedaVideo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <input type="text" autocomplete="off" placeholder="{{item.annoProduzioneInizio}}" class="form-control" formControlName="annoProduzioneInizio">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <input type="text" autocomplete="off" placeholder="{{item.annoProduzioneFine}}" class="form-control" formControlName="annoProduzioneFine">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" autocomplete="off" placeholder="{{item.foto}}" class="form-control" formControlName="foto">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-dark">save</button>
+            <button class="btn btn-dark">exit</button>
+
+        </div>
+    </form>
+</ng-template>
+
+<!-- ANCHOR inserimentoArticolo -->
+<ng-template #inserimentoArticolo let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">CREAZIONE ARTICOLO</h4>
+        <button type="button" class="close" id="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="formCreazioneArticolo" (ngSubmit)="creaArticolo()">
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <input type="text" autocomplete="off" placeholder="inserisci modello" class="form-control" formControlName="modello">
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <input type="text" autocomplete="off" placeholder="inserisci marca" class="form-control" formControlName="marca">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <input type="text" autocomplete="off" placeholder="inserisci descrizione" class="form-control" formControlName="descrizione">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <input type="text" autocomplete="off" placeholder="inserisci nazionalita" class="form-control" formControlName="nazionalita">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <input type="text" autocomplete="off" placeholder="inserisci ram" class="form-control" formControlName="ram">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <input type="text" autocomplete="off" placeholder="inserisci processore" class="form-control" formControlName="processore">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <input type="text" autocomplete="off" placeholder="inserisci scheda madre" class="form-control" formControlName="schedaMadre">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <input type="text" autocomplete="off" placeholder="inserisci scheda video" class="form-control" formControlName="schedaVideo">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <input type="text" autocomplete="off" placeholder="inserisci inizio produzione" class="form-control" formControlName="annoProduzioneInizio">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <input type="text" autocomplete="off" placeholder="inserisci fine produzione" class="form-control" formControlName="annoProduzioneFine">
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" autocomplete="off" placeholder="inserisci foto" class="form-control" formControlName="foto">
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-dark">save</button>
+            <button class="btn btn-dark">exit</button>
+
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #eliminazioneArticolo let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">CREAZIONE ARTICOLO</h4>
+        <button type="button" class="close" id="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="formCreazioneArticolo" (ngSubmit)="eliminazione()">
+
+        <div class="modal-body">
+            <p>sei sicuro?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-dark">save</button>
+            <button class="btn btn-dark">exit</button>
+
+        </div>
+    </form>
+</ng-template>

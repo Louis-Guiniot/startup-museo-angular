@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { selectArticolis } from 'src/app/redux/redux-articolo';
 import { Articolo } from 'src/core/model/model-data/articolo.interface';
 import { ArticoliService } from '../services/articoli.service';
+import { NgbModal, ModalDismissReasons, NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-articoli',
@@ -14,12 +15,47 @@ import { ArticoliService } from '../services/articoli.service';
 })
 export class ArticoliComponent implements OnInit {
 
-  constructor(private router: Router, private articoliService: ArticoliService, private store: Store, private fb: FormBuilder) {
+  constructor(private router: Router, private articoliService: ArticoliService, 
+              private store: Store, private fb: FormBuilder, private modalService: NgbModal ) {
+    
     //tramite service carico già la lista di articoli. da Undefined però
     this.articoliService.retreiveAllArticoli()
   }
 
+  //form creazione
   formCreazioneArticolo:FormGroup
+
+  //modale
+  closeResult = ''
+  idItemInArrivoString:string
+  idItemArrivoNumber:number
+
+  open(content,idItemPassed?:string) {
+
+    console.log("id item --> ",idItemPassed)
+
+    //associo id passato a variabile stringa per comunicazione con db e a variabile numero per if in hmtl
+    this.idItemInArrivoString = idItemPassed
+    this.idItemArrivoNumber=Number.parseInt(idItemPassed)
+    
+    this.modalService.open(content, { size: 'xl'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      this.formCreazioneArticolo.reset();
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a BACKDROP';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
 
   ngOnInit(): void {
     this.formCreazioneArticolo = this.fb.group({
@@ -40,6 +76,67 @@ export class ArticoliComponent implements OnInit {
   //tramite redux prendo lista articoli presenti su db. su html accedo tramite for di lista_articoli
   get lista_articoli(): Observable<Articolo[]> {
     return this.store.pipe(select(selectArticolis))
+  }
+
+  creaArticolo(){
+    console.log(this.formCreazioneArticolo.value.modello)
+    console.log(this.formCreazioneArticolo.value.marca)
+    console.log(this.formCreazioneArticolo.value.descrizione)
+    console.log(this.formCreazioneArticolo.value.nazionalita)
+    console.log(this.formCreazioneArticolo.value.ram)
+    console.log(this.formCreazioneArticolo.value.processore)
+    console.log(this.formCreazioneArticolo.value.schedaMadre)
+    console.log(this.formCreazioneArticolo.value.schedaVideo)
+    console.log(this.formCreazioneArticolo.value.annoProduzioneInizio)
+    console.log(this.formCreazioneArticolo.value.annoProduzioneInizio)
+    console.log(this.formCreazioneArticolo.value.foto)
+
+    this.articoliService.createArticolo(      
+      this.formCreazioneArticolo.value.modello,
+      this.formCreazioneArticolo.value.marca,
+      this.formCreazioneArticolo.value.descrizione,
+      this.formCreazioneArticolo.value.nazionalita,
+      this.formCreazioneArticolo.value.ram,
+      this.formCreazioneArticolo.value.processore,
+      this.formCreazioneArticolo.value.schedaMadre,
+      this.formCreazioneArticolo.value.schedaVideo,
+      this.formCreazioneArticolo.value.annoProduzioneInizio,
+      this.formCreazioneArticolo.value.annoProduzioneInizio,
+      this.formCreazioneArticolo.value.foto)
+
+  }
+
+  aggiornaArticolo(){
+    console.log(this.formCreazioneArticolo.value.modello)
+    console.log(this.formCreazioneArticolo.value.marca)
+    console.log(this.formCreazioneArticolo.value.descrizione)
+    console.log(this.formCreazioneArticolo.value.nazionalita)
+    console.log(this.formCreazioneArticolo.value.ram)
+    console.log(this.formCreazioneArticolo.value.processore)
+    console.log(this.formCreazioneArticolo.value.schedaMadre)
+    console.log(this.formCreazioneArticolo.value.schedaVideo)
+    console.log(this.formCreazioneArticolo.value.annoProduzioneInizio)
+    console.log(this.formCreazioneArticolo.value.annoProduzioneInizio)
+    console.log(this.formCreazioneArticolo.value.foto)
+
+    this.articoliService.updateArticolo(
+      this.idItemInArrivoString,      
+      this.formCreazioneArticolo.value.modello,
+      this.formCreazioneArticolo.value.marca,
+      this.formCreazioneArticolo.value.descrizione,
+      this.formCreazioneArticolo.value.nazionalita,
+      this.formCreazioneArticolo.value.ram,
+      this.formCreazioneArticolo.value.processore,
+      this.formCreazioneArticolo.value.schedaMadre,
+      this.formCreazioneArticolo.value.schedaVideo,
+      this.formCreazioneArticolo.value.annoProduzioneInizio,
+      this.formCreazioneArticolo.value.annoProduzioneInizio,
+      this.formCreazioneArticolo.value.foto)
+  }
+
+  eliminazione(){
+    console.log("id item da eliminare --> ", this.idItemInArrivoString)
+    this.articoliService.deleteArticolo(this.idItemInArrivoString)
   }
   
 }
