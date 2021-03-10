@@ -119,6 +119,7 @@ export class ArticoliComponent implements OnInit {
     console.log(this.formCreazioneArticolo.value.annoProduzioneInizio)
     console.log(this.formCreazioneArticolo.value.foto)
 
+    //chiamo metodo service per mandare richiesta update articolo
     this.articoliService.updateArticolo(
       this.idItemInArrivoString,      
       this.formCreazioneArticolo.value.modello,
