@@ -1,7 +1,7 @@
 <p>login works!</p>
+<h1>crea utente</h1>
 
-<h1>login utente</h1>
-<form [formGroup]="formLoginiUtente" (ngSubmit)="loginUtente()">
+<form [formGroup]="formLoginiUtente" (ngSubmit)="creaAdmin()">
 
     <div class="row">
         <div class="col">
@@ -27,8 +27,8 @@
 
 </form>
 
-<h1>crea utente</h1>
-<form [formGroup]="formCreazioneUtente" (ngSubmit)="creaUtente()">
+<h1>login utente</h1>
+<form [formGroup]="formCreazioneUtente" (ngSubmit)="loginAdmin()">
 
     <div class="row">
         <div class="col">

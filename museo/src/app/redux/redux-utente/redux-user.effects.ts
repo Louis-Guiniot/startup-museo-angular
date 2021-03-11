@@ -6,7 +6,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Observable } from "rxjs";
 import { switchMap, map, tap } from "rxjs/operators";
 import { HttpCommunicationsService } from "src/core/http/http-communications.service";
-import { createUtente, deleteUtente, initUtenti, loginUtente, retreiveAllUtenti, updateUtente } from "./redux-user.actions";
+import { createAdmin,  deleteUtente, initUtenti, loginAdmin,  retreiveAllUtenti, updateUtente } from "./redux-user.actions";
 
 
 @Injectable()
@@ -22,7 +22,7 @@ export class UtenteEffects {
     }
 
     
-    createUtente(
+    createAdmin(
         username: string,
         password: string,
         roles: string
@@ -53,7 +53,7 @@ export class UtenteEffects {
         return this.http.retrievePostCall<Response>('admin/delete',{id});
     }
 
-    loginUtente(username:string,password:string){
+    loginAdmin(username:string,password:string){
         return this.http.retrievePostCall<Response>('admin/signIn', {
             username,
             password,
@@ -90,8 +90,8 @@ export class UtenteEffects {
     ));
 
     createUtente$: Observable<Action> = createEffect(() => this.actions$.pipe(
-        ofType(createUtente),
-        switchMap((action) => this.createUtente(
+        ofType(createAdmin),
+        switchMap((action) => this.createAdmin(
             action.username,
             action.password,
             action.roles
@@ -102,8 +102,8 @@ export class UtenteEffects {
     ));
 
     loginUtente$: Observable<Action> = createEffect(() => this.actions$.pipe(
-        ofType(loginUtente),
-        switchMap((action) => this.loginUtente(
+        ofType(loginAdmin),
+        switchMap((action) => this.loginAdmin(
             action.username,
             action.password
         ).pipe(

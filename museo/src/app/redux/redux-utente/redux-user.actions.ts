@@ -3,7 +3,7 @@ import { Response } from 'src/core/model/response.interface';
 
 export const retreiveAllUtenti = createAction('[Utente] retrieve');
 
-export const createUtente = createAction('[Utente] create', props<{
+export const createAdmin = createAction('[Utente] create', props<{
     username: string, 
     password: string, 
     roles: string
@@ -17,7 +17,7 @@ export const updateUtente = createAction('[Utente] update', props<{
 }>());
 
 export const deleteUtente = createAction('[Utente] delete', props<{id:string}>());
-export const loginUtente = createAction('[Utente] login', props<{
+export const loginAdmin = createAction('[Utente] login', props<{
     username: string, 
     password: string
 }>());
