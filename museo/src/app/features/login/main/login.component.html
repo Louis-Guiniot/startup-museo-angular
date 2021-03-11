@@ -1,7 +1,7 @@
 <p>login works!</p>
 
-<h1>crea utente</h1>
-<form [formGroup]="formCreazioneUtente" (ngSubmit)="creaUtente()">
+<h1>login utente</h1>
+<form [formGroup]="formLoginiUtente" (ngSubmit)="loginUtente()">
 
     <div class="row">
         <div class="col">
@@ -19,6 +19,29 @@
 
     <div class="input-group mb-3">
         <input type="text" autocomplete="off" placeholder="inserisci ruolo" class="form-control" formControlName="roles">
+    </div>
+
+    <button type="submit" class="btn btn-dark">
+        save
+    </button>
+
+</form>
+
+<h1>crea utente</h1>
+<form [formGroup]="formCreazioneUtente" (ngSubmit)="creaUtente()">
+
+    <div class="row">
+        <div class="col">
+            <div class="input-group mb-3">
+                <input type="text" autocomplete="off" placeholder="inserisci username" class="form-control" formControlName="username">
+            </div>
+
+        </div>
+        <div class="col">
+            <div class="input-group mb-3">
+                <input type="password" autocomplete="off" placeholder="inserisci password" class="form-control" formControlName="password">
+            </div>
+        </div>
     </div>
 
     <button type="submit" class="btn btn-dark">

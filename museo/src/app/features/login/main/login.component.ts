@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   //form creazione
   formCreazioneUtente:FormGroup
+  formLoginiUtente:FormGroup
 
   //modale
   closeResult = ''
@@ -63,6 +64,11 @@ export class LoginComponent implements OnInit {
       roles : ['',Validators.required],
     })
 
+    this.formLoginiUtente = this.fb.group({
+      username : ['',Validators.required],
+      password : ['',Validators.required]
+    })
+
   }
 
   creaUtente(){
@@ -75,6 +81,17 @@ export class LoginComponent implements OnInit {
       this.formCreazioneUtente.value.username,
       this.formCreazioneUtente.value.password,
       this.formCreazioneUtente.value.roles,
+    )
+  }
+
+  loginUtente(){
+
+    console.log("USERNAME-->",this.formLoginiUtente.value.username)
+    console.log("PASSWORD-->",this.formLoginiUtente.value.password)
+
+    this.loginService.loginUtente(
+      this.formLoginiUtente.value.username,
+      this.formLoginiUtente.value.password,
     )
   }
 
