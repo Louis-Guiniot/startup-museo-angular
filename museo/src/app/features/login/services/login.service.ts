@@ -10,7 +10,7 @@ export class LoginService {
 
   constructor(private store: Store) { }
 
-  createUtente(
+  createAdmin(
         username: string, 
         password: string,
         roles: string

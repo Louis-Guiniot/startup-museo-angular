@@ -18,7 +18,7 @@ export class UtenteEffects {
     constructor(private actions$: Actions, private http: HttpCommunicationsService, private router: Router) { }
 
     retreiveAllUtenti(): Observable<Response> {
-        return this.http.retrieveGetCall<Response>("user/findAll");
+        return this.http.retrieveGetCall<Response>("admin/findAll");
     }
 
     
@@ -27,7 +27,7 @@ export class UtenteEffects {
         password: string,
         roles: string
     ): Observable<Response>{
-        return this.http.retrievePostCall<Response>('user/create',{
+        return this.http.retrievePostCall<Response>('admin/create',{
             username,
             password,
             roles
@@ -40,7 +40,7 @@ export class UtenteEffects {
         password: string,
         roles: string
     ){
-        return this.http.retrievePostCall<Response>('user/update',{
+        return this.http.retrievePostCall<Response>('admin/update',{
             id,
             username,
             password,
@@ -49,12 +49,12 @@ export class UtenteEffects {
     }
 
     deleteUtente(id: string): Observable<Response>{
-        console.log(this.http.retrievePostCall<Response>('user/delete',{id}));
-        return this.http.retrievePostCall<Response>('user/delete',{id});
+        console.log(this.http.retrievePostCall<Response>('admin/delete',{id}));
+        return this.http.retrievePostCall<Response>('admin/delete',{id});
     }
 
     loginUtente(username:string,password:string){
-        return this.http.retrievePostCall<Response>('user/signIn', {
+        return this.http.retrievePostCall<Response>('admin/signIn', {
             username,
             password,
         });
