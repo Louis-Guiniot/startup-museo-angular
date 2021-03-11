@@ -1,5 +1,5 @@
 import { createReducer, Action, on } from "@ngrx/store";
-import { Articolo } from "src/core/model/model-data/articolo.interface";
+import { Articolo } from "src/app/core/model/model-data/articolo.interface";
 import { initArticoli } from "./redux-articolo.actions";
 
 export interface ArticoloState {

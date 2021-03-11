@@ -14,7 +14,7 @@ import { reducers } from './redux';
 import { ArticoloEffects } from './redux/redux-articolo/redux-articolo.effects';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { SharedModule } from './shared/shared.module';
-import { HttpCommunicationsService } from 'src/core/http/http-communications.service';
+import { HttpCommunicationsService } from 'src/app/core/http/http-communications.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UtenteEffects } from './redux/redux-utente/redux-user.effects';
 

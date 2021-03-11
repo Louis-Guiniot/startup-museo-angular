@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Response } from 'src/core/model/response.interface';
+import { Response } from 'src/app/core/model/response.interface';
 
 export const initArticoli = createAction('[Articolo] init Articoli', props<{response: Response}>());
 export const retreiveAllArticoli = createAction('[Articolo] Articolo');

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectArticolis } from 'src/app/redux/redux-articolo';
-import { Articolo } from 'src/core/model/model-data/articolo.interface';
+import { Articolo } from 'src/app/core/model/model-data/articolo.interface';
 import { ArticoliService } from '../services/articoli.service';
 import { NgbModal, ModalDismissReasons, NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 
