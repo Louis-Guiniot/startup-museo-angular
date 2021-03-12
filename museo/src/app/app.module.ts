@@ -16,7 +16,9 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { SharedModule } from './shared/shared.module';
 import { HttpCommunicationsService } from 'src/app/core/http/http-communications.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AdminEffects } from './redux/redux-admin/redux-admin.effects';
 import { UtenteEffects } from './redux/redux-utente/redux-user.effects';
+import { LoginAdminComponent } from './features/login-admin/main/login-admin.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { UtenteEffects } from './redux/redux-utente/redux-user.effects';
     HomeComponent,
     LoginComponent,
     ArticoliComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoginAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { UtenteEffects } from './redux/redux-utente/redux-user.effects';
      EffectsModule.forRoot([
       ArticoloEffects,
       UtenteEffects,
+      AdminEffects
      ]),
      NgbModule
   ],
