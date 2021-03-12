@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectArticolis } from 'src/app/redux/redux-articolo';
+import { selectArticoli } from 'src/app/redux/redux-articolo';
 import { Articolo } from 'src/app/core/model/model-data/articolo.interface';
 import { ArticoliService } from '../services/articoli.service';
 import { NgbModal, ModalDismissReasons, NgbAlert } from '@ng-bootstrap/ng-bootstrap';
@@ -75,7 +75,7 @@ export class ArticoliComponent implements OnInit {
 
   //tramite redux prendo lista articoli presenti su db. su html accedo tramite for di lista_articoli
   get lista_articoli(): Observable<Articolo[]> {
-    return this.store.pipe(select(selectArticolis))
+    return this.store.pipe(select(selectArticoli))
   }
 
   creaArticolo(){
