@@ -5,7 +5,7 @@ import { ArticoloState } from "./redux-articolo.reducers";
 
 export const selectArticoloState = (state: AppState) => state.articoloState;
 
-export const selectArticolis = createSelector(
+export const selectArticoli = createSelector(
     selectArticoloState,
     (state: ArticoloState) => state.articoli
 );
