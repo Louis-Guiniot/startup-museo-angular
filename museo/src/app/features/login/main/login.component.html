@@ -1,7 +1,7 @@
 <p>login works!</p>
-<h1>crea admin</h1>
+<h1>crea utente</h1>
 
-<form [formGroup]="formCreazioneUtente" (ngSubmit)="creaAdmin()">
+<form [formGroup]="formCreazioneUtente" (ngSubmit)="creaUtente()">
 
     <div class="row">
         <div class="col">
@@ -17,9 +17,38 @@
         </div>
     </div>
 
-    <div class="input-group mb-3">
-        <input type="text" autocomplete="off" placeholder="inserisci ruolo" class="form-control" formControlName="roles">
+    <div class="row">
+        <div class="col">
+            <div class="input-group mb-3">
+                <input type="text" autocomplete="off" placeholder="inserisci nome" class="form-control" formControlName="nome">
+            </div>
+
+        </div>
+        <div class="col">
+            <div class="input-group mb-3">
+                <input type="text" autocomplete="off" placeholder="inserisci cognome" class="form-control" formControlName="cognome">
+            </div>
+        </div>
     </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="input-group mb-3">
+                <input type="text" autocomplete="off" placeholder="inserisci data di nascita" class="form-control" formControlName="dataNascita">
+            </div>
+
+        </div>
+        <div class="col">
+            <div class="input-group mb-3">
+                <input type="text" autocomplete="off" placeholder="inserisci sesso" class="form-control" formControlName="sesso">
+            </div>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <input type="text" autocomplete="off" placeholder="inserisci email" class="form-control" formControlName="email">
+    </div>
+
 
     <button type="submit" class="btn btn-dark">
         save
@@ -27,8 +56,8 @@
 
 </form>
 
-<h1>login admin</h1>
-<form [formGroup]="formLoginiUtente" (ngSubmit)="loginAdmin()">
+<h1>login utente</h1>
+<form [formGroup]="formLoginUtente" (ngSubmit)="loginUtente()">
 
     <div class="row">
         <div class="col">

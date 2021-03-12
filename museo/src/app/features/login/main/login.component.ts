@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   //form creazione
   formCreazioneUtente:FormGroup
-  formLoginiUtente:FormGroup
+  formLoginUtente:FormGroup
 
   //modale
   closeResult = ''
@@ -60,37 +60,49 @@ export class LoginComponent implements OnInit {
     this.formCreazioneUtente = this.fb.group({
       username : ['',Validators.required],
       password : ['',Validators.required],
-      roles : ['',Validators.required],
+      nome : ['',Validators.required],
+      cognome : ['',Validators.required],
+      dataNascitata : ['',Validators.required],
+      sesso : ['',Validators.required],
+      email : ['',Validators.required]
     })
 
-    this.formLoginiUtente = this.fb.group({
+    this.formLoginUtente = this.fb.group({
       username : ['',Validators.required],
       password : ['',Validators.required]
     })
 
   }
 
-  creaAdmin(){
+  creaUtente(){
 
     console.log("USERNAME-->",this.formCreazioneUtente.value.username)
     console.log("PASSWORD-->",this.formCreazioneUtente.value.password)
-    console.log("ROLES-->",this.formCreazioneUtente.value.roles)
+    console.log("NOME-->",this.formCreazioneUtente.value.nome)
+    console.log("COGNOME-->",this.formCreazioneUtente.value.cognome)
+    console.log("DATA NASCITA-->",this.formCreazioneUtente.value.dataNascitata)
+    console.log("SESSO-->",this.formCreazioneUtente.value.sesso)
+    console.log("EMAIL-->",this.formCreazioneUtente.value.email)
 
-    this.loginService.createAdmin(
+    this.loginService.createUtente(
       this.formCreazioneUtente.value.username,
       this.formCreazioneUtente.value.password,
-      this.formCreazioneUtente.value.roles,
+      this.formCreazioneUtente.value.nome,
+      this.formCreazioneUtente.value.cognome,
+      this.formCreazioneUtente.value.dataNascitata,
+      this.formCreazioneUtente.value.sesso,
+      this.formCreazioneUtente.value.email
     )
   }
 
-  loginAdmin(){
+  loginUtente(){
 
-    console.log("USERNAME-->",this.formLoginiUtente.value.username)
-    console.log("PASSWORD-->",this.formLoginiUtente.value.password)
+    console.log("USERNAME-->",this.formLoginUtente.value.username)
+    console.log("PASSWORD-->",this.formLoginUtente.value.password)
 
-    this.loginService.loginAdmin(
-      this.formLoginiUtente.value.username,
-      this.formLoginiUtente.value.password,
+    this.loginService.loginUtente(
+      this.formLoginUtente.value.username,
+      this.formLoginUtente.value.password,
     )
   }
 
