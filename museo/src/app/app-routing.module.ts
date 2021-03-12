@@ -5,7 +5,11 @@ const routes: Routes = [
   
   //prime pagine visibili
   {path:'home', loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule)},
-  {path:'login', loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule)},
+
+  {path:'login',children:[
+    {path:'admin', loadChildren: () => import('./features/login-admin/login-admin.module').then(m => m.LoginAdminModule)},
+    {path:'user', loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule)},
+  ]},
 
   {path:'museo', children: [
       {path:'articoli', loadChildren: () => import('./features/articoli/articoli.module').then(m => m.ArticoliModule)}
