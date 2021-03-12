@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { createAdmin, deleteUtente, loginAdmin,  retreiveAllUtenti, updateUtente } from 'src/app/redux/redux-utente/redux-user.actions';
+import { createUtente, deleteUtente, updateUtente, retreiveAllUtenti, loginUtente } from 'src/app/redux/redux-utente/redux-user.actions';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +11,23 @@ export class LoginService {
 
   constructor(private store: Store) { }
 
-  createAdmin(
+  createUtente(
         username: string, 
         password: string,
-        roles: string
+        nome: string,
+        cognome: string,
+        dataNascitata:string,
+        sesso:string,
+        email:string
   ){
-    this.store.dispatch(createAdmin({
+    this.store.dispatch(createUtente({
       username,
       password,
-      roles
+      nome,
+      cognome,
+      dataNascitata,
+      sesso,
+      email
     }))
   }
   
@@ -30,25 +39,33 @@ export class LoginService {
         id:string,
         username:string,
         password:string,
-        roles:string
+        nome: string,
+        cognome: string,
+        dataNascitata:string,
+        sesso:string,
+        email:string
   ){
     this.store.dispatch(updateUtente({
       id, 
       username,
       password,
-      roles
+      nome,
+      cognome,
+      dataNascitata,
+      sesso,
+      email
     }))
   }
 
-  retreiveAllUtenti(){
+  retreiveAllUtentes(){
     this.store.dispatch(retreiveAllUtenti())
   }
 
-  loginAdmin(
+  loginUtente(
     username:string,
     password:string
   ){
-    this.store.dispatch(loginAdmin({
+    this.store.dispatch(loginUtente({
       username,
       password
     }))
