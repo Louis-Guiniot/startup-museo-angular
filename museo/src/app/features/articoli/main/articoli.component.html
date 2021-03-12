@@ -21,7 +21,7 @@
                 <td>{{item.id}}</td>
                 <td>{{item.modello}}</td>
                 <td>{{item.marca}}</td>
-                <td>{{item.descrizione}}</td>
+                <td><p>{{item.descrizione}}</p></td>
                 <td>{{item.nazionalita}}</td>
                 <td>{{item.ram}}</td>
                 <td>{{item.processore}}</td>
@@ -29,7 +29,7 @@
                 <td>{{item.schedaVideo}}</td>
                 <td>{{item.annoProduzioneInizio}}</td>
                 <td>{{item.annoProduzioneFine}}</td>
-                <td>{{item.foto}}</td>
+                <td><img src="{{item.foto}}" alt=""></td>
                 <td><button (click)="open(aggiornamentoArticolo,item.id)">detail</button></td>
                 <td><button (click)="open(eliminazioneArticolo,item.id)">delete</button></td>
 
@@ -115,7 +115,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" autocomplete="off" placeholder="{{item.foto}}" class="form-control" formControlName="foto">
+                        <img src="{{item.foto}}" alt=""><br/>
+                        <input type='file' (change)="onSelectFile($event)">
                     </div>
                 </div>
             </div>
@@ -202,7 +203,8 @@
                 </div>
             </div>
             <div class="input-group mb-3">
-                <input type="text" autocomplete="off" placeholder="inserisci foto" class="form-control" formControlName="foto">
+                <img [src]="url" height="200"> <br/>
+                <input type='file' (change)="onSelectFile($event)">
             </div>
 
         </div>

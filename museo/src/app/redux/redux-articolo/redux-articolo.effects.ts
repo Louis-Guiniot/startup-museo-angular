@@ -30,7 +30,7 @@ export class ArticoloEffects {
         schedaVideo:string,
         annoProduzioneInizio:string,
         annoProduzioneFine:string,
-        foto:string
+        foto:string|ArrayBuffer
     ): Observable<Response>{
         return this.http.retrievePostCall<Response>('articolo/create',{
             modello, marca, descrizione, nazionalita, 
@@ -50,7 +50,7 @@ export class ArticoloEffects {
         schedaVideo:string,
         annoProduzioneInizio:string,
         annoProduzioneFine:string,
-        foto:string
+        foto:string|ArrayBuffer
     ){
         return this.http.retrievePostCall<Response>('articolo/update',{id, modello, marca, descrizione, nazionalita, 
             ram, processore, schedaMadre, schedaVideo, 

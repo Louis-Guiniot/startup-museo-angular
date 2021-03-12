@@ -21,7 +21,7 @@ const routes: Routes = [
   
 
   
-  { path: 'admin/panel', loadChildren: () => import('./features/admin-panel/admin-panel.module').then(m => m.AdminPanelModule) },
+  
   { path: '**', loadChildren: () => import('./features/page-not-found/page-not-found.module').then(m => m.PageNotFoundModule) },
 
 ];

@@ -20,3 +20,17 @@ card-header {
 thead {
     text-transform: uppercase;
 }
+img{
+    height: 100px;
+    width: 100px;
+}
+
+p {
+    overflow: hidden;
+    max-width: 75ch;
+  }
+
+  td {
+    overflow: hidden;
+    max-width: 75ch;
+  }

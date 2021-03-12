@@ -21,7 +21,7 @@ export class ArticoliService {
         schedaVideo:string,
         annoProduzioneInizio:string,
         annoProduzioneFine:string,
-        foto:string
+        foto:string|ArrayBuffer
   ){
     this.store.dispatch(createArticolo({modello, marca, descrizione, nazionalita, 
                                         ram, processore, schedaMadre, schedaVideo, 
@@ -44,7 +44,7 @@ export class ArticoliService {
         schedaVideo:string,
         annoProduzioneInizio:string,
         annoProduzioneFine:string,
-        foto:string
+        foto:string|ArrayBuffer
   ){
     this.store.dispatch(updateArticolo({id, modello, marca, descrizione, nazionalita, 
                                         ram, processore, schedaMadre, schedaVideo, 

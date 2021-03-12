@@ -16,7 +16,7 @@ export const updateArticolo = createAction('[Articolo] find-update', props<{
     schedaVideo:string,
     annoProduzioneInizio:string,
     annoProduzioneFine:string,
-    foto:string
+    foto:string|ArrayBuffer
 }>())
 export const createArticolo = createAction('[Articolo] creazione Articolo', props<{
     modello:string,
@@ -29,5 +29,5 @@ export const createArticolo = createAction('[Articolo] creazione Articolo', prop
     schedaVideo:string,
     annoProduzioneInizio:string,
     annoProduzioneFine:string,
-    foto: string
+    foto: string|ArrayBuffer
 }>());
