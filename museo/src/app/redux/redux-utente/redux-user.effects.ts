@@ -5,20 +5,17 @@ import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Observable } from "rxjs";
 import { switchMap, map, tap } from "rxjs/operators";
-import { createUtente,  deleteUtente, initUtenti,  loginUtente,  retreiveAllUtenti, updateUtente } from "./redux-user.actions";
+import { createUtente,  deleteUtente, initUser, initUtenti,  loginUserFailure,  loginUserSuccess,  loginUtente,  retreiveAllUtenti, updateUtente } from "./redux-user.actions";
 import { HttpCommunicationsService } from "src/app/core/http/http-communications.service";
 
 
 @Injectable()
 export class UtenteEffects {
-    retreiveAllUsers() {
-        throw new Error("Method not implemented.");
-    }
 
     constructor(private actions$: Actions, private http: HttpCommunicationsService, private router: Router) { }
 
     retreiveAllUtenti(): Observable<Response> {
-        return this.http.retrieveGetCall<Response>("user/findAll");
+        return this.http.retrieveGetCall<Response>("utente/findAll");
     }
 
     
@@ -27,16 +24,16 @@ export class UtenteEffects {
         password: string,
         nome: string,
         cognome: string,
-        dataNascitata:string,
+        dataNascita:string,
         sesso:string,
         email: string
     ): Observable<Response>{
-        return this.http.retrievePostCall<Response>('user/create',{
+        return this.http.retrievePostCall<Response>('utente/create',{
             username,
             password,
             nome,
             cognome,
-            dataNascitata,
+            dataNascita,
             sesso,
             email
         });
@@ -48,29 +45,29 @@ export class UtenteEffects {
         password: string,
         nome: string,
         cognome: string,
-        dataNascitata:string,
+        dataNascita:string,
         sesso:string,
         email: string
     ){
-        return this.http.retrievePostCall<Response>('user/update',{
+        return this.http.retrievePostCall<Response>('utente/update',{
             id,
             username,
             password,
             nome,
             cognome,
-            dataNascitata,
+            dataNascita,
             sesso,
             email
         });
     }
 
     deleteUtente(id: string): Observable<Response>{
-        console.log(this.http.retrievePostCall<Response>('user/delete',{id}));
-        return this.http.retrievePostCall<Response>('user/delete',{id});
+        console.log(this.http.retrievePostCall<Response>('utente/delete',{id}));
+        return this.http.retrievePostCall<Response>('utente/delete',{id});
     }
 
     loginUtente(username:string,password:string){
-        return this.http.retrievePostCall<Response>('user/signIn', {
+        return this.http.retrievePostCall<Response>('utente/signIn', {
             username,
             password,
         });
@@ -84,7 +81,7 @@ export class UtenteEffects {
             action.password,
             action.nome,
             action.cognome,
-            action.dataNascitata,
+            action.dataNascita,
             action.sesso,
             action.email
             ).pipe(
@@ -116,7 +113,7 @@ export class UtenteEffects {
             action.password,
             action.nome,
             action.cognome,
-            action.dataNascitata,
+            action.dataNascita,
             action.sesso,
             action.email
             ).pipe(
@@ -131,9 +128,22 @@ export class UtenteEffects {
             action.username,
             action.password
         ).pipe(
-            map((response) => initUtenti({ response }))
-            ,tap(()=>this.router.navigateByUrl('/redirectUtente'))
+            map((response) => {
+                if(response.result === null){
+                  return loginUserFailure({error:'Username e/o Password non corretta'})
+                }else{   
+                    sessionStorage.setItem('username',action.username)
+                    return loginUserSuccess({user: response.result})
+                }
+              })
         ))
     ));
+
+    //******************************/
+loginUserSuccess$=createEffect(()=>this.actions$.pipe(
+    ofType(loginUserSuccess),
+    map( (action) => initUser( {user: action.user} )),
+    tap(()=>this.router.navigateByUrl('/home'))
+  ));
   
 }
