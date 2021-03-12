@@ -16,7 +16,7 @@ export class LoginService {
         password: string,
         nome: string,
         cognome: string,
-        dataNascitata:string,
+        dataNascita:string,
         sesso:string,
         email:string
   ){
@@ -25,7 +25,7 @@ export class LoginService {
       password,
       nome,
       cognome,
-      dataNascitata,
+      dataNascita,
       sesso,
       email
     }))
@@ -41,7 +41,7 @@ export class LoginService {
         password:string,
         nome: string,
         cognome: string,
-        dataNascitata:string,
+        dataNascita:string,
         sesso:string,
         email:string
   ){
@@ -51,13 +51,13 @@ export class LoginService {
       password,
       nome,
       cognome,
-      dataNascitata,
+      dataNascita,
       sesso,
       email
     }))
   }
 
-  retreiveAllUtentes(){
+  retreiveAllUtenti(){
     this.store.dispatch(retreiveAllUtenti())
   }
 
