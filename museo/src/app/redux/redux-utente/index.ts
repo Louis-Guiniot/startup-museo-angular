@@ -5,7 +5,7 @@ import { UtenteState } from "./redux-user.reducers";
 
 export const selectUtenteState = (state: AppState) => state.utenteState;
 
-export const selectArticolis = createSelector(
+export const selectUtenti = createSelector(
     selectUtenteState,
     (state: UtenteState) => state.utenti
 );

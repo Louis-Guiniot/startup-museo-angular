@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Observable } from "rxjs";
 import { switchMap, map, tap } from "rxjs/operators";
-import { createAdmin,  deleteUtente, initUtenti, loginAdmin,  retreiveAllUtenti, updateUtente } from "./redux-user.actions";
+import { createUtente,  deleteUtente, initUtenti,  loginUtente,  retreiveAllUtenti, updateUtente } from "./redux-user.actions";
 import { HttpCommunicationsService } from "src/app/core/http/http-communications.service";
 
 
@@ -18,19 +18,27 @@ export class UtenteEffects {
     constructor(private actions$: Actions, private http: HttpCommunicationsService, private router: Router) { }
 
     retreiveAllUtenti(): Observable<Response> {
-        return this.http.retrieveGetCall<Response>("admin/findAll");
+        return this.http.retrieveGetCall<Response>("user/findAll");
     }
 
     
-    createAdmin(
+    createUtente(
         username: string,
         password: string,
-        roles: string
+        nome: string,
+        cognome: string,
+        dataNascitata:string,
+        sesso:string,
+        email: string
     ): Observable<Response>{
-        return this.http.retrievePostCall<Response>('admin/create',{
+        return this.http.retrievePostCall<Response>('user/create',{
             username,
             password,
-            roles
+            nome,
+            cognome,
+            dataNascitata,
+            sesso,
+            email
         });
     }
 
@@ -38,23 +46,31 @@ export class UtenteEffects {
         id:string,
         username: string,
         password: string,
-        roles: string
+        nome: string,
+        cognome: string,
+        dataNascitata:string,
+        sesso:string,
+        email: string
     ){
-        return this.http.retrievePostCall<Response>('admin/update',{
+        return this.http.retrievePostCall<Response>('user/update',{
             id,
             username,
             password,
-            roles
+            nome,
+            cognome,
+            dataNascitata,
+            sesso,
+            email
         });
     }
 
     deleteUtente(id: string): Observable<Response>{
-        console.log(this.http.retrievePostCall<Response>('admin/delete',{id}));
-        return this.http.retrievePostCall<Response>('admin/delete',{id});
+        console.log(this.http.retrievePostCall<Response>('user/delete',{id}));
+        return this.http.retrievePostCall<Response>('user/delete',{id});
     }
 
-    loginAdmin(username:string,password:string){
-        return this.http.retrievePostCall<Response>('admin/signIn', {
+    loginUtente(username:string,password:string){
+        return this.http.retrievePostCall<Response>('user/signIn', {
             username,
             password,
         });
@@ -66,7 +82,11 @@ export class UtenteEffects {
             action.id,
             action.username,
             action.password,
-            action.roles
+            action.nome,
+            action.cognome,
+            action.dataNascitata,
+            action.sesso,
+            action.email
             ).pipe(
             map((response) => initUtenti({ response }))
             ,tap(()=>this.router.navigateByUrl('/redirectUtente'))
@@ -90,11 +110,15 @@ export class UtenteEffects {
     ));
 
     createUtente$: Observable<Action> = createEffect(() => this.actions$.pipe(
-        ofType(createAdmin),
-        switchMap((action) => this.createAdmin(
+        ofType(createUtente),
+        switchMap((action) => this.createUtente(
             action.username,
             action.password,
-            action.roles
+            action.nome,
+            action.cognome,
+            action.dataNascitata,
+            action.sesso,
+            action.email
             ).pipe(
             map((response) => initUtenti({ response }))
             ,tap(()=>this.router.navigateByUrl('/redirectUtente'))
@@ -102,8 +126,8 @@ export class UtenteEffects {
     ));
 
     loginUtente$: Observable<Action> = createEffect(() => this.actions$.pipe(
-        ofType(loginAdmin),
-        switchMap((action) => this.loginAdmin(
+        ofType(loginUtente),
+        switchMap((action) => this.loginUtente(
             action.username,
             action.password
         ).pipe(
