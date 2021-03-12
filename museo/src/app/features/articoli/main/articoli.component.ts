@@ -56,6 +56,19 @@ export class ArticoliComponent implements OnInit {
     }
   }
 
+  url: string | ArrayBuffer;
+
+  onSelectFile(event) { // called each time file input changes
+      if (event.target.files && event.target.files[0]) {
+        var reader = new FileReader();
+
+        reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+        reader.onload = (event) => { // called once readAsDataURL is completed
+          this.url = event.target.result;
+        }
+      }
+  }
 
   ngOnInit(): void {
     this.formCreazioneArticolo = this.fb.group({
@@ -69,7 +82,7 @@ export class ArticoliComponent implements OnInit {
       schedaMadre: ['', Validators.required],
       annoProduzioneInizio: ['', Validators.required],
       annoProduzioneFine: ['', Validators.required],
-      foto: ['', Validators.required],
+      //foto: ['', Validators.required],
     })
   }
 
@@ -88,8 +101,8 @@ export class ArticoliComponent implements OnInit {
     console.log(this.formCreazioneArticolo.value.schedaMadre)
     console.log(this.formCreazioneArticolo.value.schedaVideo)
     console.log(this.formCreazioneArticolo.value.annoProduzioneInizio)
-    console.log(this.formCreazioneArticolo.value.annoProduzioneInizio)
-    console.log(this.formCreazioneArticolo.value.foto)
+    console.log(this.formCreazioneArticolo.value.annoProduzioneFine)
+  //  console.log(this.formCreazioneArticolo.value.foto)
 
     this.articoliService.createArticolo(      
       this.formCreazioneArticolo.value.modello,
@@ -101,8 +114,8 @@ export class ArticoliComponent implements OnInit {
       this.formCreazioneArticolo.value.schedaMadre,
       this.formCreazioneArticolo.value.schedaVideo,
       this.formCreazioneArticolo.value.annoProduzioneInizio,
-      this.formCreazioneArticolo.value.annoProduzioneInizio,
-      this.formCreazioneArticolo.value.foto)
+      this.formCreazioneArticolo.value.annoProduzioneFine,
+      this.url)
 
   }
 
@@ -116,8 +129,8 @@ export class ArticoliComponent implements OnInit {
     console.log(this.formCreazioneArticolo.value.schedaMadre)
     console.log(this.formCreazioneArticolo.value.schedaVideo)
     console.log(this.formCreazioneArticolo.value.annoProduzioneInizio)
-    console.log(this.formCreazioneArticolo.value.annoProduzioneInizio)
-    console.log(this.formCreazioneArticolo.value.foto)
+    console.log(this.formCreazioneArticolo.value.annoProduzioneFine)
+   // console.log(this.formCreazioneArticolo.value.foto)
 
     //chiamo metodo service per mandare richiesta update articolo
     this.articoliService.updateArticolo(
@@ -131,13 +144,16 @@ export class ArticoliComponent implements OnInit {
       this.formCreazioneArticolo.value.schedaMadre,
       this.formCreazioneArticolo.value.schedaVideo,
       this.formCreazioneArticolo.value.annoProduzioneInizio,
-      this.formCreazioneArticolo.value.annoProduzioneInizio,
-      this.formCreazioneArticolo.value.foto)
+      this.formCreazioneArticolo.value.annoProduzioneFine,
+      this.url)
   }
 
   eliminazione(){
     console.log("id item da eliminare --> ", this.idItemInArrivoString)
     this.articoliService.deleteArticolo(this.idItemInArrivoString)
   }
+
+
+ 
   
 }
