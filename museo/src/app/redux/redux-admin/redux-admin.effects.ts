@@ -6,7 +6,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Observable } from "rxjs";
 import { switchMap, map, tap } from "rxjs/operators";
 import { HttpCommunicationsService } from "src/app/core/http/http-communications.service";
-import { updateAdmin, initAdmin, deleteAdmin, retreiveAllAdmins, createAdmin, loginAdmin } from "./redux-admin.actions";
+import { updateAdmin, initAdmin, deleteAdmin, retreiveAllAdmins, createAdmin, loginAdmin,  initUserAdmin, loginAdminUserFailure, loginAdminUserSuccess } from "./redux-admin.actions";
 
 
 
@@ -105,9 +105,25 @@ export class AdminEffects {
             action.username,
             action.password
         ).pipe(
-            map((response) => initAdmin({ response }))
-            ,tap(()=>this.router.navigateByUrl('/redirectAdmin'))
+            map((response) => {
+                if(response.result === null){
+                  return loginAdminUserFailure({error:'Username e/o Password non corretta'})
+                }else{
+                  return loginAdminUserSuccess({admin: response.result})
+                }
+              })
         ))
     ));
   
+
+//******************************/
+loginUserSuccess$=createEffect(()=>this.actions$.pipe(
+    ofType(loginAdminUserSuccess),
+    map( (action) => initUserAdmin( {admin: action.admin} )),
+    tap(()=>this.router.navigateByUrl('/admin/panel'))
+  ));
+
+
 }
+
+
