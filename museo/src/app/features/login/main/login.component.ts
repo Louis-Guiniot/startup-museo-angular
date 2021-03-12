@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
-import { createUtente } from 'src/app/redux/redux-utente/redux-user.actions';
 import { LoginService } from '../services/login.service';
 
 @Component({
@@ -71,25 +70,25 @@ export class LoginComponent implements OnInit {
 
   }
 
-  creaUtente(){
+  creaAdmin(){
 
     console.log("USERNAME-->",this.formCreazioneUtente.value.username)
     console.log("PASSWORD-->",this.formCreazioneUtente.value.password)
     console.log("ROLES-->",this.formCreazioneUtente.value.roles)
 
-    this.loginService.createUtente(
+    this.loginService.createAdmin(
       this.formCreazioneUtente.value.username,
       this.formCreazioneUtente.value.password,
       this.formCreazioneUtente.value.roles,
     )
   }
 
-  loginUtente(){
+  loginAdmin(){
 
     console.log("USERNAME-->",this.formLoginiUtente.value.username)
     console.log("PASSWORD-->",this.formLoginiUtente.value.password)
 
-    this.loginService.loginUtente(
+    this.loginService.loginAdmin(
       this.formLoginiUtente.value.username,
       this.formLoginiUtente.value.password,
     )
