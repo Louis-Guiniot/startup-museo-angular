@@ -20,6 +20,7 @@ import { AdminEffects } from './redux/redux-admin/redux-admin.effects';
 import { UtenteEffects } from './redux/redux-utente/redux-user.effects';
 import { LoginAdminComponent } from './features/login-admin/main/login-admin.component';
 import { PreferitoEffects } from './redux/redux-preferito/redux-preferito.effects';
+import { PreferitiComponent } from './features/preferiti/main/preferiti.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PreferitoEffects } from './redux/redux-preferito/redux-preferito.effect
     LoginComponent,
     ArticoliComponent,
     PageNotFoundComponent,
-    LoginAdminComponent
+    LoginAdminComponent,
+    PreferitiComponent
   ],
   imports: [
     BrowserModule,
