@@ -11,9 +11,6 @@ import { HttpCommunicationsService } from "src/app/core/http/http-communications
 
 @Injectable()
 export class ArticoloEffects {
-    retreiveAllArticles() {
-        throw new Error("Method not implemented.");
-    }
 
     constructor(private actions$: Actions, private http: HttpCommunicationsService, private router: Router) { }
 

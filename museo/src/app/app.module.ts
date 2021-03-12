@@ -19,6 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminEffects } from './redux/redux-admin/redux-admin.effects';
 import { UtenteEffects } from './redux/redux-utente/redux-user.effects';
 import { LoginAdminComponent } from './features/login-admin/main/login-admin.component';
+import { PreferitoEffects } from './redux/redux-preferito/redux-preferito.effects';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { LoginAdminComponent } from './features/login-admin/main/login-admin.com
      EffectsModule.forRoot([
       ArticoloEffects,
       UtenteEffects,
-      AdminEffects
+      AdminEffects,
+      PreferitoEffects
      ]),
      NgbModule
   ],

@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
       password : ['',Validators.required],
       nome : ['',Validators.required],
       cognome : ['',Validators.required],
-      dataNascitata : ['',Validators.required],
+      dataNascita : ['',Validators.required],
       sesso : ['',Validators.required],
       email : ['',Validators.required]
     })
@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
     console.log("PASSWORD-->",this.formCreazioneUtente.value.password)
     console.log("NOME-->",this.formCreazioneUtente.value.nome)
     console.log("COGNOME-->",this.formCreazioneUtente.value.cognome)
-    console.log("DATA NASCITA-->",this.formCreazioneUtente.value.dataNascitata)
+    console.log("DATA NASCITA-->",this.formCreazioneUtente.value.dataNascita)
     console.log("SESSO-->",this.formCreazioneUtente.value.sesso)
     console.log("EMAIL-->",this.formCreazioneUtente.value.email)
 
@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
       this.formCreazioneUtente.value.password,
       this.formCreazioneUtente.value.nome,
       this.formCreazioneUtente.value.cognome,
-      this.formCreazioneUtente.value.dataNascitata,
+      this.formCreazioneUtente.value.dataNascita,
       this.formCreazioneUtente.value.sesso,
       this.formCreazioneUtente.value.email
     )
