@@ -12,7 +12,8 @@ const routes: Routes = [
   ]},
 
   {path:'museo', children: [
-      {path:'articoli', loadChildren: () => import('./features/articoli/articoli.module').then(m => m.ArticoliModule)}
+      {path:'articoli', loadChildren: () => import('./features/articoli/articoli.module').then(m => m.ArticoliModule)},
+      {path:'articoli/preferiti', loadChildren: () => import('./features/preferiti/preferiti.module').then(m => m.PreferitiModule)},
     ]
   },
 

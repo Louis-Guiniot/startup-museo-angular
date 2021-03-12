@@ -20,7 +20,8 @@ card-header {
 thead {
     text-transform: uppercase;
 }
-img{
+
+img {
     height: 100px;
     width: 100px;
 }
@@ -28,9 +29,17 @@ img{
 p {
     overflow: hidden;
     max-width: 75ch;
-  }
+}
 
-  td {
+td {
     overflow: hidden;
     max-width: 75ch;
-  }
+}
+
+.preferito {
+    color: red;
+}
+
+.non-preferito {
+    color: blue;
+}

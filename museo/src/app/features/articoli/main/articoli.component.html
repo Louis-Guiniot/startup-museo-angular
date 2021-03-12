@@ -17,11 +17,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of lista_articoli | async">
+            <tr *ngFor="let item of lista_articoli | async ; let i = index">
                 <td>{{item.id}}</td>
                 <td>{{item.modello}}</td>
                 <td>{{item.marca}}</td>
-                <td><p>{{item.descrizione}}</p></td>
+                <td>
+                    <p>{{item.descrizione}}</p>
+                </td>
                 <td>{{item.nazionalita}}</td>
                 <td>{{item.ram}}</td>
                 <td>{{item.processore}}</td>
@@ -32,7 +34,8 @@
                 <td><img src="{{item.foto}}" alt=""></td>
                 <td><button (click)="open(aggiornamentoArticolo,item.id)">detail</button></td>
                 <td><button (click)="open(eliminazioneArticolo,item.id)">delete</button></td>
-
+                <!-- (click)="addToPrefer(item.id)" -->
+                <td><button><i class="bi bi-heart"></i></button></td>
             </tr>
         </tbody>
     </table>
