@@ -7,6 +7,7 @@ import { selectArticoli } from 'src/app/redux/redux-articolo';
 import { Articolo } from 'src/app/core/model/model-data/articolo.interface';
 import { ArticoliService } from '../services/articoli.service';
 import { NgbModal, ModalDismissReasons, NgbAlert } from '@ng-bootstrap/ng-bootstrap';
+import { PreferitiService } from '../../preferiti/services/preferiti.service';
 
 @Component({
   selector: 'app-articoli',
@@ -16,7 +17,8 @@ import { NgbModal, ModalDismissReasons, NgbAlert } from '@ng-bootstrap/ng-bootst
 export class ArticoliComponent implements OnInit {
 
   constructor(private router: Router, private articoliService: ArticoliService, 
-              private store: Store, private fb: FormBuilder, private modalService: NgbModal ) {
+              private store: Store, private fb: FormBuilder, private modalService: NgbModal,
+              private preferitiService: PreferitiService ) {
     
     //tramite service carico già la lista di articoli. da Undefined però
     this.articoliService.retreiveAllArticoli()
@@ -29,6 +31,11 @@ export class ArticoliComponent implements OnInit {
   closeResult = ''
   idItemInArrivoString:string
   idItemArrivoNumber:number
+
+  //per caricamento file immagine
+  url: string | ArrayBuffer;
+
+  statusClass = 'non-preferito'
 
   open(content,idItemPassed?:string) {
 
@@ -55,8 +62,6 @@ export class ArticoliComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-
-  url: string | ArrayBuffer;
 
   onSelectFile(event) { // called each time file input changes
       if (event.target.files && event.target.files[0]) {
@@ -153,7 +158,14 @@ export class ArticoliComponent implements OnInit {
     this.articoliService.deleteArticolo(this.idItemInArrivoString)
   }
 
+  setPreferito(){
+    this.statusClass = 'preferito'
+  }
 
- 
+  changeColor = [false];
+
+  // addToPrefer(){
+  //   this.preferitiService.addToPreferiti()
+  // }
   
 }
