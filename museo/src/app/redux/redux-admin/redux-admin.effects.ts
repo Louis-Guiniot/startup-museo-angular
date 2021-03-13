@@ -118,7 +118,7 @@ export class AdminEffects {
   
 
 //******************************/
-loginUserSuccess$=createEffect(()=>this.actions$.pipe(
+loginAdminSuccess$=createEffect(()=>this.actions$.pipe(
     ofType(loginAdminUserSuccess),
     map( (action) => initUserAdmin( {admin: action.admin} )),
     tap(()=>this.router.navigateByUrl('/admin/panel'))

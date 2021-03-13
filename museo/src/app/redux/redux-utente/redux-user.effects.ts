@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Observable } from "rxjs";
 import { switchMap, map, tap } from "rxjs/operators";
-import { createUtente,  deleteUtente, initUser, initUtenti,  loginUserFailure,  loginUserSuccess,  loginUtente,  retreiveAllUtenti, updateUtente } from "./redux-user.actions";
+import { createUtente,  deleteUtente, initUser, initUtenti,  loginUserFailure,  loginUtente,  loginUtenteSuccess,  retreiveAllUtenti, updateUtente } from "./redux-user.actions";
 import { HttpCommunicationsService } from "src/app/core/http/http-communications.service";
 
 
@@ -137,15 +137,15 @@ export class UtenteEffects {
                   return loginUserFailure({error:'Username e/o Password non corretta'})
                 }else{   
                     sessionStorage.setItem('username',action.username)
-                    return loginUserSuccess({user: response.result})
+                    return loginUtenteSuccess({user: response.result})
                 }
               })
         ))
     ));
 
     //******************************/
-loginUserSuccess$=createEffect(()=>this.actions$.pipe(
-    ofType(loginUserSuccess),
+loginUtenteSuccess$=createEffect(()=>this.actions$.pipe(
+    ofType(loginUtenteSuccess),
     map( (action) => initUser( {user: action.user} )),
     tap(()=>this.router.navigateByUrl('/cards'))
   ));

@@ -34,5 +34,5 @@ export const loginUtente = createAction('[Utente] login', props<{
 export const initUtenti = createAction('[UtenteInit] init', props<{response: Response}>());
 export const initUser = createAction('[UserInit]' , props<{user: Utente}>());
 
-export const loginUserSuccess = createAction('[User] Login Success', props<{user: Utente}>());
+export const loginUtenteSuccess = createAction('[User] Login Success', props<{user: Utente}>());
 export const loginUserFailure = createAction('[User] Login Failure', props<{error: string}>());
