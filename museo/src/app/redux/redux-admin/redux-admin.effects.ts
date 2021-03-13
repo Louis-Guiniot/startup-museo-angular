@@ -109,7 +109,7 @@ export class AdminEffects {
                 if(response.result === null){
                   return loginAdminUserFailure({error:'Username e/o Password non corretta'})
                 }else{
-                    sessionStorage.setItem('username',action.username)
+                    sessionStorage.setItem('admin',action.username)
                     return loginAdminUserSuccess({admin: response.result})
                 }
               })

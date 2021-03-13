@@ -136,7 +136,7 @@ export class UtenteEffects {
                 if(response.result === null){
                   return loginUserFailure({error:'Username e/o Password non corretta'})
                 }else{   
-                    sessionStorage.setItem('username',action.username)
+                    sessionStorage.setItem('user',action.username)
                     return loginUtenteSuccess({user: response.result})
                 }
               })
