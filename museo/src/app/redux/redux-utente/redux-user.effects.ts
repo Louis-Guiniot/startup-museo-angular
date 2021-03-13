@@ -117,10 +117,14 @@ export class UtenteEffects {
             action.sesso,
             action.email
             ).pipe(
-            map((response) => initUtenti({ response }))
-            ,tap(()=>this.router.navigateByUrl('/redirectUtente'))
+            map((response) => 
+            initUtenti({ response }))
+            ,tap(()=>this.router.navigateByUrl('/cards'))
         ))
     ));
+
+
+    
 
     loginUtente$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(loginUtente),
@@ -143,7 +147,7 @@ export class UtenteEffects {
 loginUserSuccess$=createEffect(()=>this.actions$.pipe(
     ofType(loginUserSuccess),
     map( (action) => initUser( {user: action.user} )),
-    tap(()=>this.router.navigateByUrl('/home'))
+    tap(()=>this.router.navigateByUrl('/cards'))
   ));
   
 }

@@ -20,6 +20,8 @@ const routes: Routes = [
   //pagine di errore e login non fatta
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   
+  { path: 'cards', loadChildren: () => import('./features/cards/cards.module').then(m => m.CardsModule) },
+  
 
   
   

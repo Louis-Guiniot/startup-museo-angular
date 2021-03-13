@@ -12,5 +12,5 @@ export const selectUtenti = createSelector(
 
 export const getCurrentUtente = createSelector(
     selectUtenteState,
-    (state: UtenteState, params: Params) => state.utenti.find(item => item.id === Number(params['id']))
+    (state: UtenteState, params: Params) => state.utenti.find(utente => utente.id === Number(params['id']))
 );
