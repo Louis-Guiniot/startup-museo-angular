@@ -1,45 +1,56 @@
-<div class="box">
-    <p>articoli works!</p>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>modello</th>
-                <th>marca</th>
-                <th>descrizione</th>
-                <th>nazionalita</th>
-                <th>ram</th>
-                <th>processore</th>
-                <th>scheda Madre</th>
-                <th>scheda Video</th>
-                <th>anno Produzione Inizio</th>
-                <th>anno Produzione Fine</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of lista_articoli | async">
-                <td>{{item.id}}</td>
-                <td>{{item.modello}}</td>
-                <td>{{item.marca}}</td>
-                <td>{{item.descrizione}}</td>
-                <td>{{item.nazionalita}}</td>
-                <td>{{item.ram}}</td>
-                <td>{{item.processore}}</td>
-                <td>{{item.schedaMadre}}</td>
-                <td>{{item.schedaVideo}}</td>
-                <td>{{item.annoProduzioneInizio}}</td>
-                <td>{{item.annoProduzioneFine}}</td>
-                <td>{{item.foto}}</td>
-                <td><button (click)="open(aggiornamentoArticolo,item.id)">detail</button></td>
-                <td><button (click)="open(eliminazioneArticolo,item.id)">delete</button></td>
+<div class="box-container">
+    <div class="box-header">
+        Collezione + logo
+    </div>
+    <div class="box-table">
+        <table class="table-articoli">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>voce 1</th>
+                    <th>voce 2</th>
+                    <th>voce 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of lista_articoli | async">
+                    <td>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                        </label>
+                        </div>
+                    </td>
+                    <td>Loren</td>
+                    <td>Ipsum</td>
+                    <td>Loren</td>
+                    <td>
+                        icona
+                    </td>
+                    <td>
+                        icona
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-            </tr>
-        </tbody>
-    </table>
+    </div>
+    <div class="footer">
+        <div class="grid-buttons-footer">
+            <button class="btn btn-danger"><i class="bi bi-house"></i></button>
 
-    <button class="btn btn-dark" (click)="open(inserimentoArticolo)">
-        clicca per inserire
-    </button>
+            <button class="btn btn-danger"><i class="bi bi-star"></i></button>
+
+            <button class="btn btn-danger button-add"><i class="bi bi-plus"></i></button>
+
+            <button class="btn btn-danger"><i class="bi bi-people"></i></button>
+
+            <button class="btn btn-danger"><i class="bi bi-mailbox2"></i></button>
+
+        </div>
+
+
+    </div>
 </div>
 
 <!-- ANCHOR aggiornamentoArticolo -->
