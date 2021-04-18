@@ -12,4 +12,5 @@ export interface Articolo{
     annoProduzioneInizio:string
     annoProduzioneFine:string
     foto: string
+    stato:string
 }
