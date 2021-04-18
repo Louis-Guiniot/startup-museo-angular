@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
+import { select, Store, State } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectArticoli } from 'src/app/redux/redux-articolo';
 import { Articolo } from 'src/app/core/model/model-data/articolo.interface';
@@ -87,6 +87,7 @@ export class ArticoliComponent implements OnInit {
       schedaMadre: ['', Validators.required],
       annoProduzioneInizio: ['', Validators.required],
       annoProduzioneFine: ['', Validators.required],
+      stato: ['', Validators.required],
       //foto: ['', Validators.required],
     })
   }
@@ -120,7 +121,8 @@ export class ArticoliComponent implements OnInit {
       this.formCreazioneArticolo.value.schedaVideo,
       this.formCreazioneArticolo.value.annoProduzioneInizio,
       this.formCreazioneArticolo.value.annoProduzioneFine,
-      this.url)
+      this.url,
+      this.formCreazioneArticolo.value.stato)
 
   }
 
@@ -150,7 +152,8 @@ export class ArticoliComponent implements OnInit {
       this.formCreazioneArticolo.value.schedaVideo,
       this.formCreazioneArticolo.value.annoProduzioneInizio,
       this.formCreazioneArticolo.value.annoProduzioneFine,
-      this.url)
+      this.url,
+      this.formCreazioneArticolo.value.stato)
   }
 
   eliminazione(){

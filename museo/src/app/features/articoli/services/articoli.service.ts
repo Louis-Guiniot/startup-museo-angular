@@ -21,11 +21,12 @@ export class ArticoliService {
         schedaVideo:string,
         annoProduzioneInizio:string,
         annoProduzioneFine:string,
-        foto:string|ArrayBuffer
+        foto:string|ArrayBuffer,
+        stato:string
   ){
     this.store.dispatch(createArticolo({modello, marca, descrizione, nazionalita, 
                                         ram, processore, schedaMadre, schedaVideo, 
-                                        annoProduzioneInizio, annoProduzioneFine,foto}))
+                                        annoProduzioneInizio, annoProduzioneFine,foto,stato}))
   }
   
   deleteArticolo(id:string){
@@ -44,11 +45,12 @@ export class ArticoliService {
         schedaVideo:string,
         annoProduzioneInizio:string,
         annoProduzioneFine:string,
-        foto:string|ArrayBuffer
+        foto:string|ArrayBuffer,
+        stato:string
   ){
     this.store.dispatch(updateArticolo({id, modello, marca, descrizione, nazionalita, 
                                         ram, processore, schedaMadre, schedaVideo, 
-                                        annoProduzioneInizio, annoProduzioneFine, foto}))
+                                        annoProduzioneInizio, annoProduzioneFine, foto,stato}))
   }
 
   retreiveAllArticoli(){
