@@ -1,5 +1,5 @@
 export interface Preferito{
-    idPreferito?:number
+    id:number
     idUtente:string
     idArticolo:string
 }
