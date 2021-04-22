@@ -1,3 +1,4 @@
+import { addToPreferiti } from './../../../redux/redux-preferito/redux-preferito.actions';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -75,21 +76,16 @@ export class ArticoliComponent implements OnInit {
       }
   }
 
+  arrayArticoli = []
   ngOnInit(): void {
-    this.formCreazioneArticolo = this.fb.group({
-      modello: ['', Validators.required],
-      marca: ['', Validators.required],
-      descrizione: ['', Validators.required],
-      nazionalita: ['', Validators.required],
-      ram: ['', Validators.required],
-      processore: ['', Validators.required],
-      schedaVideo: ['', Validators.required],
-      schedaMadre: ['', Validators.required],
-      annoProduzioneInizio: ['', Validators.required],
-      annoProduzioneFine: ['', Validators.required],
-      stato: ['', Validators.required],
-      //foto: ['', Validators.required],
+
+    this.store.pipe(select(selectArticoli)).subscribe((articoli) => {
+      
+      this.arrayArticoli = articoli
+      console.log(this.arrayArticoli)
+      
     })
+    
   }
 
   //tramite redux prendo lista articoli presenti su db. su html accedo tramite for di lista_articoli
@@ -166,6 +162,60 @@ export class ArticoliComponent implements OnInit {
   }
 
   changeColor = [false];
+
+
+  trashArray = []
+  removed  = false
+
+  addOrRemove(id:number){
+
+    // if(!this.removed){
+    //   this.trashArray.push({
+    //     idArticolo:id
+    //   })
+    //   console.log("primo inseirmento")
+    // }
+
+    // this.trashArray.forEach(item => {
+    //   if(item.idArticolo == id){
+    //     console.log("trovato")
+    //   } 
+    // })
+
+  }
+
+  contentEditable
+  toggleEditable(event,id:number) {
+
+    if ( event.target.checked ) {
+        this.contentEditable = true;
+        console.log("aggiunto")
+        this.trashArray.push({
+          idArticolo:id
+        })
+    }else{
+      console.log("tolto item : " + id)
+      this.contentEditable = false;
+    
+      const itemIndex = this.trashArray.findIndex(item=>{
+        return (item.id == id)
+      })
+      this.trashArray.splice(itemIndex,1)
+    }
+   console.log("checked : "+this.contentEditable)
+   console.log("trash array: "+JSON.stringify(this.trashArray))
+  }
+
+  deleteArticoli(){
+    this.trashArray.forEach(item => {
+      this.articoliService.deleteArticolo(item.idArticolo)
+      console.log("eliminato id : "+ item.idArticolo)
+    })
+  }
+
+  addToPreferiti(idArticoloPassato:number){
+    this.preferitiService.addToPreferiti(1,idArticoloPassato)
+  }
 
   // addToPrefer(){
   //   this.preferitiService.addToPreferiti()
