@@ -1,0 +1,155 @@
+.box-container {
+    width: 100%;
+    background-color: #dddad3;
+    display: grid;
+    grid-template-rows: 30px auto;
+    padding: 15px;
+    row-gap: 30px;
+    height: 100%;
+}
+
+//ANCHOR bottoni
+.btn {
+    border-radius: 10px;
+}
+
+.button-action {
+    font-size: 20px;
+    padding: 5px 10px;
+    border: none;
+}
+
+.btn-edit {
+    background-color: transparent;
+    color: #dddad3;
+    border: #dddad3 1px solid;
+}
+
+.btn-exit {
+    background-color: #da222a;
+    color: #fff;
+    border: 1px #da222a solid;
+    -webkit-box-shadow: 0 8px 8px -4px #da222a;
+    -moz-box-shadow: 0 8px 8px -4px #da222a;
+    box-shadow: 0 8px 15px -4px #da222a;
+}
+
+.btn-normal {
+    background-color: #dddad3;
+}
+
+.btn-add-photo {
+    background-color: #dddad3;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 10px;
+    font-size: 100px;
+    color: #505050;
+}
+
+.btn-reset {
+    background-color: #da222a;
+    color: #fff;
+}
+
+.btn-footer {
+    width: 40%;
+    margin: 10px;
+}
+
+//ANCHOR header pagina
+.box-header {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    width: 100%;
+    background: transparent;
+    display: flex;
+    height: max-content;
+}
+
+.header {
+    color: #da222a;
+    width: 90%;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+//ANCHOR container dettaglio
+.detail-container {
+    border-radius: 20px;
+    border: 2px #da222a solid;
+    background-color: #fff;
+    padding: 10px 10px 0 10px;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    overflow: auto;
+}
+
+.form-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: max-content;
+}
+
+.flex-box {
+    height: max-content;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: min-content;
+}
+
+.flex-item {
+    height: min-content;
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px 20px 20px;
+    label {
+        margin: 0;
+    }
+    .title {
+        width: 100%;
+        font-size: 15px;
+        color: #505050;
+    }
+    .info {
+        font-size: 18px;
+        width: 100%;
+        color: #da222a;
+    }
+    input,
+    select,
+    textarea {
+        width: 100%;
+        background: #dddad3;
+        border: 2px solid #efefef;
+        padding: 5px;
+        resize: none;
+    }
+    input:focus,
+    select:focus,
+    textarea:focus {
+        outline: 0;
+        border: 2px solid #efefef;
+    }
+}
+
+.photo-item {
+    border-bottom: 2px solid #dddad3;
+}
+
+//ANCHOR footer
+.buttons-footer {
+    position: sticky;
+    bottom: 0;
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    padding: 20px;
+    background-color: #fff;
+    border-top: 2px solid #dddad3;
+}
