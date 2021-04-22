@@ -1,3 +1,4 @@
+import { deletePreferito, retreiveAllPreferitiOfUtente } from './../../../redux/redux-preferito/redux-preferito.actions';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { addToPreferiti } from 'src/app/redux/redux-preferito/redux-preferito.actions';
@@ -10,10 +11,18 @@ export class PreferitiService {
 
   constructor(private store: Store) { }
 
-  addToPreferiti(idUtente:string,idArticolo:string){
+  addToPreferiti(idUtente:number,idArticolo:number){
     this.store.dispatch(addToPreferiti({
       idUtente,
       idArticolo
     }))
+  }
+
+  deletePreferito(id:number){
+    this.store.dispatch(deletePreferito({id}))
+  }
+
+  getAllPreferiti(){
+    this.store.dispatch(retreiveAllPreferitiOfUtente())
   }
 }
