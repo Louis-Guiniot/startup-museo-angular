@@ -1,67 +1,69 @@
 <div class="box-container">
     <div class="box-header">
-        <button class="button-action btn-exit"><i class="bi bi-chevron-left"></i></button>
+        <button class="btn button-action-header btn-exit" (click)="goList()"><i class="bi bi-chevron-left"></i></button>
         <span class="header">Nome Articolo</span>
-        <button class="button-action btn-edit"><i class="bi bi-pencil-square"></i></button>
+        <button class="btn button-action-header btn-edit"><i class="bi bi-pencil-square"></i></button>
     </div>
     <div class="detail-container">
-        <div class="flex-box general">
-            <div class="flex-item">
-                <label class="title">Nome articolo</label>
-                <label class="info">Modello</label>
+        <div class="info-container">
+            <div class="flex-box general">
+                <div class="flex-item">
+                    <label class="title">Nome articolo</label>
+                    <label class="info">Modello</label>
+                </div>
+                <div class="flex-item">
+                    <label class="title">Marca</label>
+                    <label class="info">{{item.marca}}</label>
+                </div>
+                <div class="flex-item">
+                    <label class="title">Stato</label>
+                    <label class="info">{{item.stato}}</label>
+                </div>
+                <div class="flex-item">
+                    <label class="title">Numero di serie</label>
+                    <label class="info">123456789</label>
+                </div>
             </div>
-            <div class="flex-item">
-                <label class="title">Marca</label>
-                <label class="info">{{item.marca}}</label>
-            </div>
-            <div class="flex-item">
-                <label class="title">Stato</label>
-                <label class="info">{{item.stato}}</label>
-            </div>
-            <div class="flex-item">
-                <label class="title">Numero di serie</label>
-                <label class="info">123456789</label>
-            </div>
-        </div>
 
-        <div class="flex-box date">
-            <div class="flex-item">
-                <label class="title">Inizio anno produzione</label>
-                <label class="info">{{item.annoProduzioneInizio}}</label>
+            <div class="flex-box date">
+                <div class="flex-item">
+                    <label class="title">Inizio anno produzione</label>
+                    <label class="info">{{item.annoProduzioneInizio}}</label>
+                </div>
+                <div class="flex-item">
+                    <label class="title">Fine anno produzione</label>
+                    <label class="info">{{item.annoProduzioneFine}}</label>
+                </div>
             </div>
-            <div class="flex-item">
-                <label class="title">Fine anno produzione</label>
-                <label class="info">{{item.annoProduzioneFine}}</label>
-            </div>
-        </div>
 
-        <div class="flex-box specific">
-            <div class="flex-item">
-                <label class="title">Ram</label>
-                <label class="info">{{item.ram}}</label>
+            <div class="flex-box specific">
+                <div class="flex-item">
+                    <label class="title">Ram</label>
+                    <label class="info">{{item.ram}}</label>
+                </div>
+                <div class="flex-item">
+                    <label class="title">Processore</label>
+                    <label class="info">{{item.processore}}</label>
+                </div>
+                <div class="flex-item">
+                    <label class="title">Scheda madre</label>
+                    <label class="info">{{item.schedaMadre}}</label>
+                </div>
+                <div class="flex-item">
+                    <label class="title">Scheda video</label>
+                    <label class="info">{{item.schedaVideo}}</label>
+                </div>
             </div>
-            <div class="flex-item">
-                <label class="title">Processore</label>
-                <label class="info">{{item.processore}}</label>
-            </div>
-            <div class="flex-item">
-                <label class="title">Scheda madre</label>
-                <label class="info">{{item.schedaMadre}}</label>
-            </div>
-            <div class="flex-item">
-                <label class="title">Scheda video</label>
-                <label class="info">{{item.schedaVideo}}</label>
-            </div>
-        </div>
 
-        <div class="flex-box other">
-            <div class="flex-item">
-                <label class="title">Nazionalità</label>
-                <label class="info">{{item.nazionalita}}</label>
-            </div>
-            <div class="flex-item">
-                <label class="title">Descrizione</label>
-                <label class="info">{{item.descrizione}}</label>
+            <div class="flex-box other">
+                <div class="flex-item">
+                    <label class="title">Nazionalità</label>
+                    <label class="info">{{item.nazionalita}}</label>
+                </div>
+                <div class="flex-item">
+                    <label class="title">Descrizione</label>
+                    <label class="info">{{item.descrizione}}</label>
+                </div>
             </div>
         </div>
     </div>
@@ -69,23 +71,23 @@
 
 <div class="footer-action">
     <div class="item">
-        <button class="button-action btn-normal"><i class="bi bi-house"></i></button>
+        <button class="btn button-action btn-normal" (click)="goHome()"><i class="bi bi-house"></i></button>
         <label class="footer-label">Home</label>
     </div>
     <div class="item">
-        <button class="button-action btn-normal"><i class="bi bi-star"></i></button>
+        <button class="btn button-action btn-normal"><i class="bi bi-star"></i></button>
         <label class="footer-label">Preferiti</label>
     </div>
     <div class="item">
-        <button class="button-action btn-share"><i class="bi bi-share"></i></button>
+        <button class="btn button-action btn-share"><i class="bi bi-share"></i></button>
         <label class="footer-label">Condividi</label>
     </div>
     <div class="item">
-        <button class="button-action btn-normal"><i class="bi bi-file-arrow-down"></i></button>
+        <button class="btn button-action btn-normal"><i class="bi bi-file-arrow-down"></i></button>
         <label class="footer-label">Esporta</label>
     </div>
     <div class="item">
-        <button class="button-action btn-normal"><i class="bi bi-file-arrow-down"></i></button>
+        <button class="btn button-action btn-normal"><i class="bi bi-file-arrow-down"></i></button>
         <label class="footer-label">Lorem</label>
     </div>
 

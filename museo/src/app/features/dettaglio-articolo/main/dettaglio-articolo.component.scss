@@ -1,3 +1,4 @@
+@import "src/style/buttons.scss";
 .box-container {
     width: 100%;
     background-color: #dddad3;
@@ -5,41 +6,7 @@
     grid-template-rows: 30px auto;
     padding: 15px;
     row-gap: 30px;
-}
-
-//ANCHOR bottoni
-.button-action {
-    font-size: 20px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: none;
-}
-
-.btn-edit {
-    background-color: transparent;
-    color: #da222a;
-    border: #fff 1px solid;
-}
-
-.btn-exit {
-    background-color: #da222a;
-    color: #fff;
-    border: 1px #da222a solid;
-    -webkit-box-shadow: 0 8px 8px -4px #da222a;
-    -moz-box-shadow: 0 8px 8px -4px #da222a;
-    box-shadow: 0 8px 15px -4px #da222a;
-}
-
-.btn-share {
-    font-size: 35px;
-    background-color: #da222a;
-    color: #fff;
-    border: none;
-    padding: 5px 15px;
-}
-
-.btn-normal {
-    background-color: #dddad3;
+    height: 100%;
 }
 
 //ANCHOR header pagina
@@ -63,18 +30,22 @@
 
 //ANCHOR container dettaglio
 .detail-container {
-    width: 100%;
-    display: grid;
-    row-gap: 30px;
-    grid-template-columns: 100%;
-    grid-template-rows: max-content;
     border-radius: 20px;
     border: 2px #da222a solid;
     background-color: #fff;
-    padding: 20px;
+    padding: 10px 10px 10px 10px;
     grid-row-start: 2;
     grid-row-end: 3;
-    overflow: scroll;
+    overflow: auto;
+}
+
+.info-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: max-content;
+    row-gap: 15px;
+    padding: 10px 10px 10px 10px;
 }
 
 .flex-box {
@@ -118,26 +89,4 @@
 .flex-item:nth-child(3),
 .flex-item:nth-child(4) {
     border-top: #e3e3e3 solid 1px;
-}
-
-//ANCHOR footer
-.footer-action {
-    position: absolute;
-    bottom: 0;
-    height: 150px;
-    width: 100%;
-    background-color: #fff;
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    padding: 10px;
-}
-
-.item {
-    padding: 10px 0 0 0;
-    text-align: center;
-    .footer-label {
-        width: 100%;
-        font-size: 15px;
-    }
 }

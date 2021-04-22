@@ -51,4 +51,11 @@ export class DettaglioArticoloComponent implements OnInit {
     //   return this.store.pipe(select(selectArticoli))
     // }
 
+    goHome(){
+      this.router.navigateByUrl("home")
+    }
+
+    goList(){
+      this.router.navigateByUrl("articoli")
+    }
 }
