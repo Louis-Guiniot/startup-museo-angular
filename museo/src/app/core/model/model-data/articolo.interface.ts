@@ -3,6 +3,7 @@ export interface Articolo{
     id?:number
     modello:string
     marca:string
+    numeroSerie: string
     descrizione:string
     nazionalita:string
     ram:string
@@ -12,4 +13,5 @@ export interface Articolo{
     annoProduzioneInizio:string
     annoProduzioneFine:string
     foto: string
+    stato:string
 }

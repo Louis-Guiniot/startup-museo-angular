@@ -1,0 +1,125 @@
+<div class="box-container">
+  <div class="box-header">
+    <button class="btn button-action btn-exit" (click)="goList()">
+      <i class="bi bi-chevron-left"></i>
+    </button>
+    <span class="header">Aggiungi articolo</span>
+    <button class="btn button-action btn-edit">
+      <i class="bi bi-pencil-square"></i>
+    </button>
+  </div>
+  <div class="detail-container">
+    <form [formGroup]="formCreazioneArticolo" (ngSubmit)="creaArticolo()">
+      <div class="flex-box general">
+        <div class="form-container">
+          <div class="flex-item photo-item">
+            <button class="btn btn-add-photo">
+              <i class="bi bi-plus"></i>
+            </button>
+            <button class="btn btn-normal">Aggiungi Immagine</button>
+          </div>
+          <div class="flex-item">
+            <label class="title">Nome articolo</label>
+            <input
+              type="text"
+              placeholder="nome articolo"
+              formControlName="modello"
+            />
+          </div>
+          <div class="flex-item">
+            <label class="title">Numero di serie</label>
+            <input
+              type="text"
+              placeholder="numero di serie"
+              formControlName="numeroSerie"
+            />
+          </div>
+          <div class="flex-item">
+            <label class="title">Stato</label>
+            <select formControlName="stato">
+              <option value="" disabled selected>seleziona lo stato</option>
+              <option value="Ottimo">Ottimo</option>
+              <option value="Medio">Medio</option>
+              <option value="Basso">Basso</option>
+            </select>
+          </div>
+          <div class="flex-item">
+            <label class="title">Data inizio produzione</label>
+            <input type="date" formControlName="annoProduzioneInizio" />
+          </div>
+          <div class="flex-item">
+            <label class="title">Data fine produzione</label>
+            <input type="date" formControlName="annoProduzioneFine" />
+          </div>
+          <div class="flex-item">
+            <label class="title">Marca</label>
+            <input
+              type="text"
+              placeholder="marca articolo"
+              formControlName="marca"
+            />
+          </div>
+          <div class="flex-item">
+            <label class="title">Ram</label>
+            <input
+              type="text"
+              placeholder="ram articolo"
+              formControlName="ram"
+            />
+          </div>
+          <div class="flex-item">
+            <label class="title">Scheda madre</label>
+            <input
+              type="text"
+              placeholder="scheda madre articolo"
+              formControlName="schedaMadre"
+            />
+          </div>
+          <div class="flex-item">
+            <label class="title">Scheda video</label>
+            <input
+              type="text"
+              placeholder="scheda video articolo"
+              formControlName="schedaVideo"
+            />
+          </div>
+          <div class="flex-item">
+            <label class="title">Processore</label>
+            <input
+              type="text"
+              placeholder="processore articolo"
+              formControlName="processore"
+            />
+          </div>
+          <div class="flex-item">
+            <label class="title">Nazionalità</label>
+            <input
+              type="text"
+              placeholder="nazionalità articolo"
+              formControlName="nazionalita"
+            />
+          </div>
+          <div class="flex-item">
+            <label class="title">Descrizione</label>
+            <textarea
+              type="text"
+              placeholder="descrizione articolo"
+              formControlName="descrizione"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="buttons-footer">
+        <button type="submit" class="btn btn-normal btn-footer">salva</button>
+        <button
+          type="button"
+          class="btn btn-reset btn-footer"
+          (click)="annulla()"
+        >
+          annulla
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

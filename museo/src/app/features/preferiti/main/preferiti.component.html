@@ -1,1 +1,72 @@
-<p>preferiti works!</p>
+<div class="box-container">
+    <div class="box-header">
+        <span class="span-header">Collezione</span>
+        <img src="../assets/MMNLogo.png" alt="" class="logo">
+    </div>
+    <div class="box-table">
+        <div class="box-table-grid-header">
+            <div class="input-flex">
+                <i class="bi bi-search"></i>
+                <input type="text" placeholder="cerca articolo" #input>
+            </div>
+            <button class="btn btn-normal" (click)="deleteArticoli();"><i class="bi bi-trash"></i></button>
+        </div>
+        <table class="table-articoli">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>voce</th>
+                    <th>voce</th>
+                    <th>voce</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of arrayPreferiti; let i = index">
+                    <td class="td-check">
+                        <!-- <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (click)="toggleEditable($event,i,item.id)">
+                            <label class="form-check-label" for="flexCheckDefault">
+                        </label>
+                        </div> -->
+                        <input type="checkbox" class="check-div" (click)="toggleEditable($event,item.id)">
+                    </td>
+                    <td>{{item.id}}</td>
+                    <td>Ipsum</td>
+                    <td>Loren</td>
+                    <td class="td-btn">
+                        <button class="btn btn-reset" routerLink="/dettaglio/articolo/{{item.idArticolo}}/1"><i
+                                class="bi bi-pencil-square"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<div class="footer-action">
+    <div class="item">
+        <button class="btn button-action btn-normal" routerLink="/articoli"><i class="bi bi-house"></i></button>
+        <label class="footer-label">Home</label>
+    </div>
+    <div class="item">
+        <button class="btn button-action btn-normal" routerLink="/articoli/preferiti"><i
+                class="bi bi-star"></i></button>
+        <label class="footer-label">Preferiti</label>
+    </div>
+    <div class="item">
+        <button class="btn btn-hide"><i class="bi bi-share"></i></button>
+        <label class="footer-label label-transp">Condividi</label>
+    </div>
+
+    <div class="item">
+        <button class="btn button-action btn-normal"><i class="bi bi-gear-wide-connected"></i></button>
+        <label class="footer-label">Esporta</label>
+    </div>
+    <div class="item">
+        <button class="btn button-action btn-normal"><i class="bi bi-person-circle"></i></button>
+        <label class="footer-label">Lorem</label>
+    </div>
+</div>

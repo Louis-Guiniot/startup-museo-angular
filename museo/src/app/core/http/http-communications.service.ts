@@ -1,13 +1,15 @@
+import { HttpClient, HttpEvent, HttpEventType, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { HttpClient, HttpEvent, HttpEventType, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
 @Injectable(
 
 )
 export class HttpCommunicationsService {
 
   private host = 'http://localhost:8090/museo/rest/';
+  // private host = 'http://192.168.1.62:8090/museo/rest/';
+
 
   constructor(private httpClient: HttpClient) {
   }

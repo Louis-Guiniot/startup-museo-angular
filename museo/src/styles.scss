@@ -1,14 +1,24 @@
 body,
 html {
-    height: 100%;
-    margin: 0;
-    font-family: Roboto;
+  height: 100vh;
+  margin: 0;
 }
 
+body {
+  font-family: "Red Rose" !important;
+}
+
+:root {
+  --borderdiv: #da222a;
+  --bgcolor: #dddad3;
+  --borderinput: #efefef;
+}
 
 /* Importing Bootstrap SCSS file. */
 
-@import '~bootstrap/scss/bootstrap';
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css");
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// @font-face {
+//     font-family: "vcr_osd_mono";
+//     src: local("vcr_osd_mono") url(./assets/fonts/vcr_osd_mono/VCR_OSD_MONO_1.001.ttf) format("truetype");
+// }
+@import "~bootstrap/scss/bootstrap";

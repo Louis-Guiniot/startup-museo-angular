@@ -1,4 +1,4 @@
-<p>login works!</p>
+<!-- <p>login works!</p>
 <h1>crea utente</h1>
 
 <form [formGroup]="formCreazioneUtente" (ngSubmit)="creaUtente()">
@@ -77,4 +77,23 @@
         save
     </button>
 
-</form>
+</form> -->
+
+<div class="login-container">
+  <img src="../assets/MMNLogo.png" alt="nope" />
+  <ng-container *ngIf="!toggled">
+    <form [formGroup]="formLoginUtente" (ngSubmit)="loginUtente()">
+      <div class="login-form">
+        <div class="flex-input">
+          <i class="bi bi-person-fill"></i>
+          <input type="text" placeholder="username" />
+        </div>
+        <div class="flex-input">
+          <i class="bi bi-lock-fill"></i>
+          <input type="password" placeholder="password" />
+        </div>
+      </div>
+    </form>
+  </ng-container>
+  <button class="btn-login" (click)="toggleDiv()">Accedi</button>
+</div>

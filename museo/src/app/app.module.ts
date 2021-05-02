@@ -21,7 +21,9 @@ import { UtenteEffects } from './redux/redux-utente/redux-user.effects';
 import { LoginAdminComponent } from './features/login-admin/main/login-admin.component';
 import { PreferitoEffects } from './redux/redux-preferito/redux-preferito.effects';
 import { PreferitiComponent } from './features/preferiti/main/preferiti.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { CreaArticoloComponent } from './features/crea-articolo/main/crea-articolo.component';
+import { DettaglioArticoloComponent } from './features/dettaglio-articolo/main/dettaglio-articolo.component';
 
 @NgModule({
   declarations: [
@@ -31,10 +33,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ArticoliComponent,
     PageNotFoundComponent,
     LoginAdminComponent,
-    PreferitiComponent
+    PreferitiComponent,
+    CreaArticoloComponent,
+    DettaglioArticoloComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     SharedModule,

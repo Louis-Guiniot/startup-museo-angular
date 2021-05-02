@@ -7,7 +7,7 @@ import { Response } from 'src/app/core/model/response.interface';
 
 import { switchMap, map, tap } from "rxjs/operators";
 import { HttpCommunicationsService } from "src/app/core/http/http-communications.service";
-import { addToPreferiti, deletePreferito, initPreferiti, retreiveAllPreferitiOfUtente } from "./redux-preferito.actions";
+import { addToPreferiti, createPreferitoSuccess, deletePreferito, initPref, initPreferiti, retreiveAllPreferitiOfUtente } from "./redux-preferito.actions";
 
 @Injectable()
 export class PreferitoEffects {
@@ -17,18 +17,17 @@ export class PreferitoEffects {
         return this.http.retrieveGetCall<Response>("preferiti/findPreferitiUtente")
     }
 
-    addToPreferiti(idUtente:string,idArticolo: string): Observable<Response> {
+    addToPreferiti(idUtente:number,idArticolo: number): Observable<Response> {
+        console.log("chiamata")
         return this.http.retrievePostCall<Response>("preferiti/create", {
             idUtente,
             idArticolo
         })
     }
 
-    deletePreferito(idPreferito: string, idUtente:string,idArticolo: string): Observable<Response> {
+    deletePreferito(id:number): Observable<Response> {
         return this.http.retrievePostCall<Response>("preferiti/delete", {
-            idPreferito,
-            idUtente,
-            idArticolo
+            id,
         })
     }
 
@@ -38,17 +37,21 @@ export class PreferitoEffects {
             action.idUtente,
             action.idArticolo
             ).pipe(
-            map((response) => initPreferiti({ response }))
-            ,tap(()=>this.router.navigateByUrl('/redirectArticolo'))
+                map((response) => {
+                    if(response.result === null){
+                        sessionStorage.setItem("errore-preferito","true")
+                    }else{   
+                        console.log("creato")
+                        return null
+                    }
+                })
         ))
     ));
 
     deletePreferito$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(deletePreferito),
         switchMap((action) => this.deletePreferito(
-            action.idPreferito,
-            action.idUtente,
-            action.idArticolo
+            action.id
             ).pipe(
             map((response) => initPreferiti({ response }))
             ,tap(()=>this.router.navigateByUrl('/redirectArticolo'))
@@ -61,5 +64,11 @@ export class PreferitoEffects {
             map((response) => initPreferiti({ response }))
         ))
     ));
+
+    createPreferitoSuccess$=createEffect(()=>this.actions$.pipe(
+        ofType(createPreferitoSuccess),
+        map( (action) => initPref( {preferito: action.preferito} )),
+        tap(()=>this.router.navigateByUrl('/articoli'))
+      ));
     
 }
