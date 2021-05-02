@@ -1,0 +1,116 @@
+.btn {
+  border-radius: 10px;
+}
+
+.button-table {
+  width: 25px;
+  height: 25px;
+}
+
+.btn-hide {
+  background-color: #fff;
+  color: #fff;
+  font-size: 35px;
+  padding: 5px 10px;
+  border: none;
+  &:hover {
+    cursor: default;
+  }
+}
+
+.label-transp {
+  color: #fff;
+}
+
+//ANCHOR bottoni
+.button-action {
+  font-size: 25px;
+  //   padding: 5px 15px 5px 15px;
+  border: none;
+}
+
+.button-action-header {
+  font-size: 20px;
+  padding: 5px 10px;
+  border: none;
+}
+
+.btn-edit {
+  background-color: transparent;
+  color: #da222a;
+  border: #fff 1px solid;
+}
+
+.btn-exit {
+  background-color: #da222a;
+  color: #fff;
+  border: 1px #da222a solid;
+  -webkit-box-shadow: 0 8px 8px -4px #da222a;
+  -moz-box-shadow: 0 8px 8px -4px #da222a;
+  box-shadow: 0 8px 15px -4px #da222a;
+}
+
+.btn-share {
+  background-color: #da222a;
+  color: #fff;
+  border: none;
+  padding: 5px 15px;
+}
+
+.btn-normal {
+  background-color: #dddad3;
+  border: 2px solid #efefef;
+}
+
+.item:nth-child(2) {
+  margin-right: 3px;
+}
+
+.item:nth-child(4) {
+  margin-left: 3px;
+}
+
+.item {
+  padding: 10px 0 0 0;
+  width: 100px;
+  text-align: center;
+  .footer-label {
+    width: 100%;
+    font-size: 15px;
+    font-weight: 200;
+  }
+}
+
+.footer-action {
+  box-shadow: 0px 0 10px rgba(0, 0, 0, 0.8);
+  position: sticky;
+  bottom: 0;
+  height: 120px;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  padding: 10px;
+}
+
+.img-footer {
+  width: 30px;
+  height: 30px;
+}
+
+.img-footer-add {
+  width: 80px;
+  height: 80px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+
+@media (min-width: 325px) {
+  .button-action {
+    font-size: 27px;
+  }
+  .btn-share {
+    font-size: 35px;
+  }
+}
