@@ -9,8 +9,19 @@
         <i class="bi bi-search"></i>
         <input type="text" placeholder="cerca articolo" #input />
       </div>
-      <button class="btn btn-normal" (click)="deleteArticoli()">
-        <i class="bi bi-trash"></i>
+      <button class="btn btn-header" (click)="deleteArticoli()">
+        <img
+          src="/assets/images/HOME/Icone/elimina@2x.png"
+          alt="xxx"
+          class="button-header"
+        />
+      </button>
+      <button class="btn btn-header" (click)="deleteArticoli()">
+        <img
+          src="/assets/images/HOME/Icone/esporta@2x.png"
+          alt="xxx"
+          class="button-header"
+        />
       </button>
     </div>
     <table class="table-articoli" *ngIf="evento === ''">

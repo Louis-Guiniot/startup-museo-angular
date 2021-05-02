@@ -44,7 +44,7 @@
 }
 
 .input-flex {
-  width: 250px;
+  width: 200px;
   display: flex;
   align-items: center;
   background-color: aqua;
@@ -79,21 +79,21 @@ textarea:focus {
   font-size: 16px;
   border-radius: 20px;
   width: 100%;
-}
 
-tr {
-  border-bottom: 1px var(--bgcolor) solid;
-}
+  tr {
+    border-bottom: 1px var(--bgcolor) solid;
+  }
 
-th {
-  font-size: 16px;
-  font-weight: 200;
-}
+  th {
+    font-size: 16px;
+    font-weight: 200;
+  }
 
-th,
-td {
-  padding: 10px 5px 10px 5px;
-  text-align: center;
+  th,
+  td {
+    padding: 10px 5px 10px 5px;
+    text-align: center;
+  }
 }
 
 .td-btn {
