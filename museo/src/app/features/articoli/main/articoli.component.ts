@@ -1,14 +1,13 @@
-import { addToPreferiti } from './../../../redux/redux-preferito/redux-preferito.actions';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { select, Store, State } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { select, Store } from '@ngrx/store';
+import { fromEvent } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, tap } from 'rxjs/operators';
 import { selectArticoli } from 'src/app/redux/redux-articolo';
-import { Articolo } from 'src/app/core/model/model-data/articolo.interface';
-import { ArticoliService } from '../services/articoli.service';
-import { NgbModal, ModalDismissReasons, NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 import { PreferitiService } from '../../preferiti/services/preferiti.service';
+import { ArticoliService } from '../services/articoli.service';
 
 @Component({
   selector: 'app-articoli',
@@ -17,36 +16,36 @@ import { PreferitiService } from '../../preferiti/services/preferiti.service';
 })
 export class ArticoliComponent implements OnInit {
 
-  constructor(private router: Router, private articoliService: ArticoliService, 
-              private store: Store, private fb: FormBuilder, private modalService: NgbModal,
-              private preferitiService: PreferitiService ) {
-    
+  constructor(private router: Router, private articoliService: ArticoliService,
+    private store: Store, private fb: FormBuilder, private modalService: NgbModal,
+    private preferitiService: PreferitiService) {
+
     //tramite service carico già la lista di articoli. da Undefined però
     this.articoliService.retreiveAllArticoli()
   }
 
   //form creazione
-  formCreazioneArticolo:FormGroup
+  formCreazioneArticolo: FormGroup
 
   //modale
   closeResult = ''
-  idItemInArrivoString:string
-  idItemArrivoNumber:number
+  idItemInArrivoString: string
+  idItemArrivoNumber: number
 
   //per caricamento file immagine
   url: string | ArrayBuffer;
 
   statusClass = 'non-preferito'
 
-  open(content,idItemPassed?:string) {
+  open(content, idItemPassed?: string) {
 
-    console.log("id item --> ",idItemPassed)
+    console.log("id item --> ", idItemPassed)
 
     //associo id passato a variabile stringa per comunicazione con db e a variabile numero per if in hmtl
     this.idItemInArrivoString = idItemPassed
-    this.idItemArrivoNumber=Number.parseInt(idItemPassed)
-    
-    this.modalService.open(content, { size: 'xl'}).result.then((result) => {
+    this.idItemArrivoNumber = Number.parseInt(idItemPassed)
+
+    this.modalService.open(content, { size: 'xl' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -65,160 +64,134 @@ export class ArticoliComponent implements OnInit {
   }
 
   onSelectFile(event) { // called each time file input changes
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
 
-        reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-        reader.onload = (event) => { // called once readAsDataURL is completed
-          this.url = event.target.result;
-        }
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = event.target.result;
       }
+    }
   }
 
+  termFormRicerca: FormGroup
+  term
   arrayArticoli = []
+  arrayArticoliFiltrati = []
+
   ngOnInit(): void {
 
     this.store.pipe(select(selectArticoli)).subscribe((articoli) => {
-      
+
       this.arrayArticoli = articoli
       console.log(this.arrayArticoli)
-      
+
     })
-    
-  }
 
-  //tramite redux prendo lista articoli presenti su db. su html accedo tramite for di lista_articoli
-  get lista_articoli(): Observable<Articolo[]> {
-    return this.store.pipe(select(selectArticoli))
-  }
-
-  creaArticolo(){
-    console.log(this.formCreazioneArticolo.value.modello)
-    console.log(this.formCreazioneArticolo.value.marca)
-    console.log(this.formCreazioneArticolo.value.descrizione)
-    console.log(this.formCreazioneArticolo.value.nazionalita)
-    console.log(this.formCreazioneArticolo.value.ram)
-    console.log(this.formCreazioneArticolo.value.processore)
-    console.log(this.formCreazioneArticolo.value.schedaMadre)
-    console.log(this.formCreazioneArticolo.value.schedaVideo)
-    console.log(this.formCreazioneArticolo.value.annoProduzioneInizio)
-    console.log(this.formCreazioneArticolo.value.annoProduzioneFine)
-  //  console.log(this.formCreazioneArticolo.value.foto)
-
-    this.articoliService.createArticolo(      
-      this.formCreazioneArticolo.value.modello,
-      this.formCreazioneArticolo.value.marca,
-      this.formCreazioneArticolo.value.descrizione,
-      this.formCreazioneArticolo.value.nazionalita,
-      this.formCreazioneArticolo.value.ram,
-      this.formCreazioneArticolo.value.processore,
-      this.formCreazioneArticolo.value.schedaMadre,
-      this.formCreazioneArticolo.value.schedaVideo,
-      this.formCreazioneArticolo.value.annoProduzioneInizio,
-      this.formCreazioneArticolo.value.annoProduzioneFine,
-      this.url,
-      this.formCreazioneArticolo.value.stato)
+    this.termFormRicerca = this.fb.group({
+      term: ['', Validators.required]
+    })
 
   }
 
-  aggiornaArticolo(){
-    console.log(this.formCreazioneArticolo.value.modello)
-    console.log(this.formCreazioneArticolo.value.marca)
-    console.log(this.formCreazioneArticolo.value.descrizione)
-    console.log(this.formCreazioneArticolo.value.nazionalita)
-    console.log(this.formCreazioneArticolo.value.ram)
-    console.log(this.formCreazioneArticolo.value.processore)
-    console.log(this.formCreazioneArticolo.value.schedaMadre)
-    console.log(this.formCreazioneArticolo.value.schedaVideo)
-    console.log(this.formCreazioneArticolo.value.annoProduzioneInizio)
-    console.log(this.formCreazioneArticolo.value.annoProduzioneFine)
-   // console.log(this.formCreazioneArticolo.value.foto)
 
-    //chiamo metodo service per mandare richiesta update articolo
-    this.articoliService.updateArticolo(
-      this.idItemInArrivoString,      
-      this.formCreazioneArticolo.value.modello,
-      this.formCreazioneArticolo.value.marca,
-      this.formCreazioneArticolo.value.descrizione,
-      this.formCreazioneArticolo.value.nazionalita,
-      this.formCreazioneArticolo.value.ram,
-      this.formCreazioneArticolo.value.processore,
-      this.formCreazioneArticolo.value.schedaMadre,
-      this.formCreazioneArticolo.value.schedaVideo,
-      this.formCreazioneArticolo.value.annoProduzioneInizio,
-      this.formCreazioneArticolo.value.annoProduzioneFine,
-      this.url,
-      this.formCreazioneArticolo.value.stato)
+  evento = '' //dichiaro variabile evento per gestire visualizzazione in html
+  @ViewChild('input') input: ElementRef; //prendo il valore di input da html
+  ngAfterViewInit() {
+    fromEvent(this.input.nativeElement, 'keyup')
+      .pipe(
+        filter(Boolean),
+        debounceTime(500),
+        distinctUntilChanged(),
+        tap((event: KeyboardEvent) => {
+
+          //attribuisco ad evento il valore della input
+          this.evento = this.input.nativeElement.value
+          // console.log(this.evento)
+        })
+      )
+      .subscribe(value => {
+        this.filtra(this.evento) //chiamo la funzione filtra passandogli il termine cercato
+      });
   }
-
-  eliminazione(){
-    console.log("id item da eliminare --> ", this.idItemInArrivoString)
-    this.articoliService.deleteArticolo(this.idItemInArrivoString)
-  }
-
-  setPreferito(){
-    this.statusClass = 'preferito'
-  }
-
-  changeColor = [false];
-
 
   trashArray = []
-  removed  = false
-
-  addOrRemove(id:number){
-
-    // if(!this.removed){
-    //   this.trashArray.push({
-    //     idArticolo:id
-    //   })
-    //   console.log("primo inseirmento")
-    // }
-
-    // this.trashArray.forEach(item => {
-    //   if(item.idArticolo == id){
-    //     console.log("trovato")
-    //   } 
-    // })
-
-  }
-
   contentEditable
-  toggleEditable(event,id:number) {
 
-    if ( event.target.checked ) {
-        this.contentEditable = true;
-        console.log("aggiunto")
-        this.trashArray.push({
-          idArticolo:id
-        })
-    }else{
+  toggleEditable(event, id: number) {
+
+    if (event.target.checked) {
+      this.contentEditable = true;
+      console.log("aggiunto")
+      this.trashArray.push({
+        idArticolo: id
+      })
+    } else {
       console.log("tolto item : " + id)
       this.contentEditable = false;
-    
-      const itemIndex = this.trashArray.findIndex(item=>{
+
+      const itemIndex = this.trashArray.findIndex(item => {
         return (item.id == id)
       })
-      this.trashArray.splice(itemIndex,1)
+      this.trashArray.splice(itemIndex, 1)
     }
-   console.log("checked : "+this.contentEditable)
-   console.log("trash array: "+JSON.stringify(this.trashArray))
+    console.log("checked : " + this.contentEditable)
+    console.log("trash array: " + JSON.stringify(this.trashArray))
   }
 
-  deleteArticoli(){
+  //per ogni articolo presente del trashArray lo elimino singolarmente
+  deleteArticoli() {
     this.trashArray.forEach(item => {
       this.articoliService.deleteArticolo(item.idArticolo)
-      console.log("eliminato id : "+ item.idArticolo)
+      console.log("eliminato id : " + item.idArticolo)
     })
   }
 
-  addToPreferiti(idArticoloPassato:number){
-    this.preferitiService.addToPreferiti(1,idArticoloPassato)
+  //aggiungo ai preferiti l'articolo
+  addToPreferiti(idArticoloPassato: number) {
+    this.preferitiService.addToPreferiti(1, idArticoloPassato)
+    console.log(sessionStorage.getItem("errore-preferito"))
   }
 
-  // addToPrefer(){
-  //   this.preferitiService.addToPreferiti()
-  // }
-  
+  termine = ''
+  isVuoto: Boolean
+  filtra(event: any) {
+    this.isVuoto = false
+    this.arrayArticoliFiltrati = []
+    this.termine = event
+
+    this.arrayArticoli.forEach(articolo => {
+      if ((articolo.marca).includes(this.termine) ||
+        (String(articolo.id)).includes(this.termine) ||
+        (articolo.modello).includes(this.termine) ||
+        (articolo.schedaMadre).includes(this.termine) ||
+        (articolo.schedaVideo).includes(this.termine) ||
+        (articolo.stato).includes(this.termine) ||
+        (articolo.nazionalita).includes(this.termine) ||
+        (articolo.descrizione).includes(this.termine) ||
+        (articolo.ram).includes(this.termine) ||
+        (articolo.processore).includes(this.termine) ||
+        (articolo.annoProduzioneInizio).includes(this.termine) ||
+        (articolo.annoProduzioneFine).includes(this.termine) ||
+        (String(articolo.numeroSerie)).includes(this.termine)
+      ) {
+        this.arrayArticoliFiltrati.push(articolo)
+      }
+    })
+
+
+    if (this.arrayArticoliFiltrati.length === 0) {
+      this.isVuoto = true
+    }
+    console.log(this.isVuoto)
+    console.log(this.arrayArticoliFiltrati)
+    console.log(this.termine)
+    console.log("event " + event)
+    this.termine = event
+  }
+
+
+
+
 }

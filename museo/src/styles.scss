@@ -1,13 +1,18 @@
 body,
 html {
-    height: 100%;
-    margin: 0;
+  height: 100vh;
+  margin: 0;
 }
 
 body {
-    font-family: 'Red Rose' !important;
+  font-family: "Red Rose" !important;
 }
 
+:root {
+  --borderdiv: #da222a;
+  --bgcolor: #dddad3;
+  --borderinput: #efefef;
+}
 
 /* Importing Bootstrap SCSS file. */
 
@@ -16,4 +21,4 @@ body {
 //     font-family: "vcr_osd_mono";
 //     src: local("vcr_osd_mono") url(./assets/fonts/vcr_osd_mono/VCR_OSD_MONO_1.001.ttf) format("truetype");
 // }
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";

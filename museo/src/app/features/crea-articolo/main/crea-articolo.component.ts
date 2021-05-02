@@ -69,10 +69,10 @@ export class CreaArticoloComponent implements OnInit {
       this.formCreazioneArticolo.value.annoProduzioneInizio,
       this.formCreazioneArticolo.value.annoProduzioneFine,
       this.url,
-      this.formCreazioneArticolo.value.stato)
+      this.formCreazioneArticolo.value.stato,
+      this.formCreazioneArticolo.value.numeroSerie)
 
   }
-
 
   annulla(){
     this.formCreazioneArticolo.reset()
