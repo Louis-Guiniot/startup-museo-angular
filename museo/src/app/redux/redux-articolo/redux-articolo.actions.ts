@@ -17,7 +17,8 @@ export const updateArticolo = createAction('[Articolo] find-update', props<{
     annoProduzioneInizio:string,
     annoProduzioneFine:string,
     foto:string|ArrayBuffer,
-    stato:string
+    stato:string,
+    numeroSerie:string
 }>())
 export const createArticolo = createAction('[Articolo] creazione Articolo', props<{
     modello:string,
@@ -31,5 +32,6 @@ export const createArticolo = createAction('[Articolo] creazione Articolo', prop
     annoProduzioneInizio:string,
     annoProduzioneFine:string,
     foto: string|ArrayBuffer,
-    stato:string
+    stato:string,
+    numeroSerie:string
 }>());

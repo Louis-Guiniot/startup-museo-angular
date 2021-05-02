@@ -31,12 +31,13 @@ export class ArticoloEffects {
         annoProduzioneInizio:string,
         annoProduzioneFine:string,
         foto:string|ArrayBuffer,
-        stato:string
+        stato:string,
+        numeroSerie:string
     ): Observable<Response>{
         return this.http.retrievePostCall<Response>('articolo/create',{
             modello, marca, descrizione, nazionalita, 
             ram, processore, schedaMadre, schedaVideo, 
-            annoProduzioneInizio, annoProduzioneFine, foto, stato});
+            annoProduzioneInizio, annoProduzioneFine, foto, stato, numeroSerie});
     }
 
     findUpdateArticolo(
@@ -52,11 +53,12 @@ export class ArticoloEffects {
         annoProduzioneInizio:string,
         annoProduzioneFine:string,
         foto:string|ArrayBuffer,
-        stato:string
+        stato:string,
+        numeroSerie:string
     ){
         return this.http.retrievePostCall<Response>('articolo/update',{id, modello, marca, descrizione, nazionalita, 
             ram, processore, schedaMadre, schedaVideo, 
-            annoProduzioneInizio, annoProduzioneFine, foto, stato});
+            annoProduzioneInizio, annoProduzioneFine, foto, stato, numeroSerie});
     }
 
     deleteArticolo(id: string): Observable<Response>{
@@ -79,7 +81,8 @@ export class ArticoloEffects {
             action.annoProduzioneInizio,
             action.annoProduzioneFine,
             action.foto,
-            action.stato).pipe(
+            action.stato,
+            action.numeroSerie).pipe(
             map((response) => initArticoli({ response }))
             ,tap(()=>this.router.navigateByUrl('/redirectArticolo'))
         ))
@@ -115,7 +118,8 @@ export class ArticoloEffects {
             action.annoProduzioneInizio,
             action.annoProduzioneFine,
             action.foto,
-            action.stato).pipe(
+            action.stato,
+            action.numeroSerie).pipe(
             map((response) => initArticoli({ response }))
             ,tap(()=>this.router.navigateByUrl('/redirectArticolo'))
         ))

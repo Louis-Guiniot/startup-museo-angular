@@ -7,7 +7,7 @@ import { Response } from 'src/app/core/model/response.interface';
 
 import { switchMap, map, tap } from "rxjs/operators";
 import { HttpCommunicationsService } from "src/app/core/http/http-communications.service";
-import { addToPreferiti, deletePreferito, initPreferiti, retreiveAllPreferitiOfUtente } from "./redux-preferito.actions";
+import { addToPreferiti, createPreferitoSuccess, deletePreferito, initPref, initPreferiti, retreiveAllPreferitiOfUtente } from "./redux-preferito.actions";
 
 @Injectable()
 export class PreferitoEffects {
@@ -37,7 +37,14 @@ export class PreferitoEffects {
             action.idUtente,
             action.idArticolo
             ).pipe(
-            map((response) => initPreferiti({ response }))
+                map((response) => {
+                    if(response.result === null){
+                        sessionStorage.setItem("errore-preferito","true")
+                    }else{   
+                        console.log("creato")
+                        return null
+                    }
+                })
         ))
     ));
 
@@ -57,5 +64,11 @@ export class PreferitoEffects {
             map((response) => initPreferiti({ response }))
         ))
     ));
+
+    createPreferitoSuccess$=createEffect(()=>this.actions$.pipe(
+        ofType(createPreferitoSuccess),
+        map( (action) => initPref( {preferito: action.preferito} )),
+        tap(()=>this.router.navigateByUrl('/articoli'))
+      ));
     
 }
