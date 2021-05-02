@@ -21,6 +21,7 @@ import { UtenteEffects } from './redux/redux-utente/redux-user.effects';
 import { LoginAdminComponent } from './features/login-admin/main/login-admin.component';
 import { PreferitoEffects } from './redux/redux-preferito/redux-preferito.effects';
 import { PreferitiComponent } from './features/preferiti/main/preferiti.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { PreferitiComponent } from './features/preferiti/main/preferiti.componen
       AdminEffects,
       PreferitoEffects
      ]),
-     NgbModule
+     NgbModule,
+     BrowserAnimationsModule
   ],
   providers: [HttpCommunicationsService],
   bootstrap: [AppComponent],

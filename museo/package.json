@@ -2,6 +2,9 @@
   "name": "museo",
   "version": "0.0.0",
   "scripts": {
+    "android": "ns run android --no-hmr",
+    "ios": "ns run ios --no-hmr",
+    "mobile": "ns run",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -11,12 +14,21 @@
   },
   "private": true,
   "dependencies": {
+    "@nativescript/angular": "~10.1.0",
+    "@nativescript/core": "~7.0.0",
+    "@nativescript/theme": "~2.5.0",
+    "reflect-metadata": "~0.1.12",
+    "tslib": "^2.0.0",
+    "@angular-devkit/core": "^11.2.9",
+    "@angular-devkit/schematics": "^11.2.9",
     "@angular/animations": "~11.2.3",
+    "@angular/cdk": "^11.2.9",
     "@angular/common": "~11.2.3",
     "@angular/compiler": "~11.2.3",
     "@angular/core": "^11.2.4",
     "@angular/forms": "~11.2.3",
     "@angular/localize": "^11.2.4",
+    "@angular/material": "^11.2.9",
     "@angular/platform-browser": "~11.2.3",
     "@angular/platform-browser-dynamic": "~11.2.3",
     "@angular/router": "~11.2.3",
@@ -25,17 +37,19 @@
     "@ngrx/router-store": "^11.0.1",
     "@ngrx/store": "^11.0.1",
     "@ngrx/store-devtools": "^11.0.1",
+    "@schematics/angular": "^9.1.0",
     "bootstrap": "^4.5.0",
     "bootstrap-icons": "^1.4.0",
     "jquery": "^1.9.1",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
-    "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {
+    "@nativescript/webpack": "~3.0.0",
+    "@nativescript/tslint-rules": "~0.0.5",
     "@angular-devkit/build-angular": "~0.1102.2",
-    "@angular/cli": "~11.2.2",
+    "@angular/cli": "^11.2.9",
     "@angular/compiler-cli": "~11.2.3",
     "@nativescript/schematics": "^11.0.0",
     "@types/jasmine": "~3.6.0",
@@ -52,5 +66,6 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.1.2"
-  }
+  },
+  "main": "main.tns.js"
 }
