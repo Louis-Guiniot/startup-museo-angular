@@ -24,6 +24,7 @@ import { PreferitiComponent } from './features/preferiti/main/preferiti.componen
 import { CommonModule } from '@angular/common';
 import { CreaArticoloComponent } from './features/crea-articolo/main/crea-articolo.component';
 import { DettaglioArticoloComponent } from './features/dettaglio-articolo/main/dettaglio-articolo.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
