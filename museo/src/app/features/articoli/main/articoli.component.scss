@@ -3,8 +3,9 @@
   width: 100%;
   background-color: var(--bgcolor);
   display: grid;
-  grid-template-rows: max-content 500px;
-  height: 100vh;
+  grid-template-rows: max-content 650px;
+  height: 100%;
+  overflow-y: hidden;
 }
 
 .box-header {
@@ -38,9 +39,7 @@
     border: none;
     padding: 5px;
   }
-  top: 0;
   background: #fff;
-  position: sticky;
 }
 
 .input-flex {
@@ -64,6 +63,7 @@ textarea:focus {
 }
 
 .box-table {
+  display: block;
   grid-row-start: 2;
   grid-row-end: 3;
   width: 95%;
@@ -72,14 +72,22 @@ textarea:focus {
   border: 2px var(--borderdiv) solid;
   background-color: #fff;
   padding: 10px;
-  overflow-y: auto;
+  height: 100%;
+  position: absolute;
+  bottom: -100px;
+  left: 0;
+  right: 0;
+  top: 10px;
 }
 
 .table-articoli {
+  max-height: 680px;
   font-size: 16px;
   border-radius: 20px;
+  display: block;
+  position: relative;
   width: 100%;
-
+  overflow-y: scroll;
   tr {
     border-bottom: 1px var(--bgcolor) solid;
   }
