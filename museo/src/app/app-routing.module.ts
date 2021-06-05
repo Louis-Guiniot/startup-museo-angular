@@ -25,6 +25,8 @@ const routes: Routes = [
 
   { path: 'cards', loadChildren: () => import('./features/cards/cards.module').then(m => m.CardsModule) },
 
+  { path: 'redirectArticolo', loadChildren: () => import('./features/redirect-articolo/redirect-articolo.module').then(m => m.RedirectArticoloModule) },
+
 
 
 
